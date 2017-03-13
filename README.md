@@ -48,3 +48,7 @@
 ![Game instructions page](mockups/Game_Instructions.png)
 ![Game page](mockups/Game.png)
 ![Leaderboard page](mockups/Leaderboard.png)
+
+#Comments By Ming
+* I think you have sold me into the idea of user scenario for future proposals
+* This idea is okay but will not score high on originality.  I bet you will find it difficult to build a collection of questions about Tufts.
