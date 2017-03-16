@@ -43,5 +43,5 @@
 
 ###Mock-Ups###
 ![Home page](mockups/Home.png)
-![Game instructions page](mockups/Game_Up.png)
-![Game page](mockups/Game_Down.png)
+![Game instructions page](mockups/Gravity.png)
+![Game page](mockups/Anti-Gravity.png)
