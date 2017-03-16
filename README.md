@@ -1,4 +1,4 @@
-##Tufts Quiz Game##
+##Float Four##
 
 ###Team Members ###
 
@@ -6,49 +6,42 @@
 
 ###Problem statement###
 
-* There is not a Tufts specific space for students to test their knowledge of the school. 
+* Connect Four is a classic game which delights thousands. While there have been some variations, the game has been relatively static. 
 
 ###Solution###
 
-* We plan to solve this problem by making a Tufts trivia game where Tufts students can test their knowledge of all things Tufts (history, sports, geography, and see how they rank among their peers.
+* We will spice up this classic game by adding an “anti-gravity” themed component that allows users to reverse the direction of gravity so that the discs float to the top, changing their relationships to each other and adding a whole new dimension of strategy to this classic game.
 
 ###Use Scenario###
 
-* When the user first visits our game, they are are presented with a screen explaining how the game works and they are given the option to play the game or view the leaderboard. Once a user decides to start playing the game, they will be given timed multiple choice questions(10-15 seconds per question) about Tufts Trivia. 
-
-* As they answer the questions, they will gain points for each correct answer. Their total score will be displayed as well as the game progresses. After they answer a question, they will immediately move on to the next question. 
-
-* After they finish answering all the questions, they will be shown their total score and the high scores leaderboard.  If their score is high enough, they are given the option to input a name to accompany their score on the leaderboard. 
+* When 2 users begin playing, they are playing Float Four the way they would play Connect Four, by sliding colored discs into the game board from the top. However, they have the added ability to reverse the direction of gravity, shifting the game pieces.
+* When the gravity is reversed, pieces are added at the bottom and they float up to rest against the top pieces. On each user’s turn, they can either place a disc in the board or reverse gravity, disrupting the carefully laid plans of their opponent.
+* The game ends when one user obtains 4 same-colored discs in a row. 
 
 ###Features (Pick Three)###
 
 * Front-end framework including Bootstrap, React, Backbone.js, AngularJS)
- * We will use Bootstrap for the interface design
+ * We will use Bootstrap for the interface design.
 * Server-side data persistence (e.g., with PostgreSQL, MongoDB, MySQL)
- * Question data, leaderboard scores and usernames will be stored on a server and retrieved upon completion of the game.
-* Reporting with charts and graphs
- * The leaderboard information will be displayed as a chart, showing the top players and personal rank in comparison.
+ * We will use a server to store the game data as it is being played between two users on two computers.
+* Use of a JavaScript framework for games (e.g. phaser.io, Panda.js, JS Gamepad API)
+ * We will use the JavaScript framework to create and animate our game.
 
 ###Data###
 
-* A collection of 50-100 trivia questions and their corresponding answers will be stored on a server 
-
-* The high scores and the name players provide (if they decide to) will be stored
-
-* As the user plays, their current score (and the questions they got right and wrong) will be stored locally, but their high score will only be stored on the server if it ranks high enough
+* The positions of the discs
+* The direction of gravity
+* Whose turn it is
+* Names of players
+* Color of each player
+* Game matchups (which client is playing which other client)
 
 ###Algorithms###
 
-* A randomization algorithm to randomize the selection of questions, but ensure questions are not repeated
-
-* A sorting algorithm to correctly rank the order of the leaderboard
+* An algorithm to change the location of the discs when a user reverses the direction of gravity 
+* An algorithm to check if a player has won the game (by placing four same-colored discs in a row)
 
 ###Mock-Ups###
 ![Home page](mockups/Home.png)
-![Game instructions page](mockups/Game_Instructions.png)
-![Game page](mockups/Game.png)
-![Leaderboard page](mockups/Leaderboard.png)
-
-#Comments By Ming
-* I think you have sold me into the idea of user scenario for future proposals
-* This idea is okay but will not score high on originality.  I bet you will find it difficult to build a collection of questions about Tufts.
+![Game instructions page](mockups/Game_Up.png)
+![Game page](mockups/Game_Down.png)
