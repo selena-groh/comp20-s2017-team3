@@ -1,0 +1,59 @@
+ok so here's what i'm thinking...
+
+We store the board as a 2d array, each value being the state of a particular slot on the board.
+States: off (no piece), player1, player2
+
+Server side I think we can get away with storing the board in the same way (2d array) but not bother to flip it or modify it outside of pieces being placed.
+We can do all the flipping and winner checking client side (and confirm it with the server).
+
+Although it might just be easy to keep them perfectly in sync...I guess we'll see.
+
+We'd actually store all the game data server side.
+
+
+
+Here's a more codey psudeo-header, undoubtedly all of these functions will change in parameters and return types and many will probably have callbacks.
+There will also be a bunch of helper functions.
+
+data structures:
+	game = object:
+		board, player names, whoseTurn, gravity state...
+	board = int [][]
+	player1/2 = int
+
+internall game data manipulation:
+
+	boolean checkWinner(game)
+		returns true if player has won the game, false otherwise
+
+	board flipBoard(board)
+		returns a flipped version of the passed in board
+
+	boolean validMove(game, location)
+		returns true if the piece is placed in a not-full column, false otherwise
+
+	game addPiece(game, location)
+		returns updated game after playing a piece in the given location (checks if valid move)
+	
+
+	void pushToServer(game)
+		updates server game with client game	
+
+	boolean equalGames(game1, game2)
+		returns true if games are equal. could be useful for checking if server game matches client game
+		could also make this a function of the game object -> isEqual(otherGame)
+
+
+visual html manipulation:
+
+	void setup(game)
+		sets up all event functions and objects
+
+	void drawBoard(board)
+		redraws the pieces on the board to match the passed in board
+
+	void gravity(state)
+		redraws environment to match the gravity
+		moves piece plaement hover boxes to opposite side of board
+
+	
