@@ -1,7 +1,7 @@
 /* FLOAT_FOUR.CSS */
 
 body {
-  background-color: #003366;
+  background-color: #11233b;
 }
 
 header {
@@ -9,14 +9,11 @@ header {
   color: white;
 }
 
-header .container {
-  padding-top: 100px;
-  padding-bottom: 50px;
-}
 header img {
   display: block;
   margin: 0 auto 20px;
 }
+
 header .intro-text .name {
   display: block;
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -35,6 +32,19 @@ header .intro-text .name {
     font-size: 1.75em;
   }
 }
+
+.navbar {
+  margin-bottom: 0px;
+}
+
+.navbar img {
+  display: inline-block;
+  float: left;
+  height: 70px;
+  padding-right: 20px;
+  width: auto;
+}
+
 .navbar-custom {
   background-color: lightgray;
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -57,7 +67,7 @@ header .intro-text .name {
   color: white;
 }
 .navbar-custom .navbar-nav li a:hover {
-  color: #003366;
+  color: #11233b;
 }
 .navbar-custom .navbar-nav li a:focus,
 .navbar-custom .navbar-nav li a:active {
@@ -65,13 +75,13 @@ header .intro-text .name {
 }
 .navbar-custom .navbar-nav li.active a {
   color: white;
-  background: #003366;
+  background: #11233b;
 }
 .navbar-custom .navbar-nav li.active a:hover,
 .navbar-custom .navbar-nav li.active a:focus,
 .navbar-custom .navbar-nav li.active a:active {
   color: white;
-  background: #003366;
+  background: #11233b;
 }
 .navbar-custom .navbar-toggle {
   color: white;
@@ -81,9 +91,9 @@ header .intro-text .name {
 }
 .navbar-custom .navbar-toggle:hover,
 .navbar-custom .navbar-toggle:focus {
-  background-color: #003366;
+  background-color: #11233b;
   color: white;
-  border-color: #003366;
+  border-color: #11233b;
 }
 @media (min-width: 768px) {
   .navbar-custom {
@@ -107,22 +117,27 @@ header .intro-text .name {
 }
 
 .jumbotron {
-  height: 700px;
-  background-color: #003366;
+  height: 850px;
+  background-color: #11233b;
   display: flex;
   align-items: center;
+  margin-bottom: 0px;
 }
 
-.jumbotron .container {
-  width: 70%;
+.main-game {
+  background-image: url(images/Background-full.png);
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .game .container {
-  height:600px;
+  height: 300px;
+  width: 450px;
   outline: 5px solid white;
   display: flex;
   vertical-align: center;
   align-items: center;
+  background-color: #11233b;
 }
 
 .game .container h2 {
