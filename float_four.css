@@ -1,6 +1,7 @@
 /* FLOAT_FOUR.CSS */
 
-body {
+html, body {
+  height: 100%;
   background-color: #11233b;
 }
 
@@ -35,6 +36,7 @@ header .intro-text .name {
 
 .navbar {
   margin-bottom: 0px;
+  padding: 25px;
 }
 
 .navbar img {
@@ -97,7 +99,7 @@ header .intro-text .name {
 }
 @media (min-width: 768px) {
   .navbar-custom {
-    padding: 25px 0;
+    padding: 25px;
     -webkit-transition: padding 0.3s;
     -moz-transition: padding 0.3s;
     transition: padding 0.3s;
@@ -117,7 +119,7 @@ header .intro-text .name {
 }
 
 .jumbotron {
-  height: 850px;
+  height: calc(100% - 100px - 60px);
   background-color: #11233b;
   display: flex;
   align-items: center;
