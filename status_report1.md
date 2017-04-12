@@ -36,7 +36,8 @@ GOALS FOR NEXT WEEK:
                 - did they make a valid move?
                 - who's turn is it?
         
-
+#Comments by Ming
+* Good set of goals for this week
         
         
         
