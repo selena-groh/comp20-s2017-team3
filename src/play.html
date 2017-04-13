@@ -1,14 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Float Four</title>
   <meta charset="utf-8"/>
+  <title>Float Four</title>
+  
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="float_four.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="../lib/crafty-min.js"></script>
 </head>
-<body>
+
+<body onload="start()">
   <nav id="mainNav" class="navbar navbar-default navbar-custom">
     <div class="container">
       <!-- Brand and toggle get grouped for better mobile display -->
@@ -16,7 +22,7 @@
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
             <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
         </button>
-        <a class="navbar-brand" href="index.html">Float Four</a>
+        <a class="navbar-brand" href="../index.html">Float Four</a>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
@@ -38,20 +44,19 @@
     <!-- /.container-fluid -->
   </nav>
   
-  <div class="jumbotron jumbotron-fluid text-center">
-    <div class="container">
-      <h1 class="display-3">FAQs</h1>
-      <p class="lead">Add FAQs here</p>
+  <div class="jumbotron text-center main-game game">
+    <div class="container" id="gamespace">
+      <h2 class="display-3" id="game">Float Four game goes here</h2>
     </div>
   </div>
   
   <footer class="footer text-center">
     <div class="container">
-      <h5>&copy; 2017 Selena Groh, Jillian Howarth, Ben Machlin, Caroline Sheng, & Craig Vitirinyu</h5>
+      <h5>&copy; 2017 Selena Groh, Jillian Howarth, Ben Machlin, Caroline Sheng, &amp; Craig Vitirinyu</h5>
     </div>
   </footer>
     
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="script.js"></script>
+  <script src="graphics.js"></script>
 </body>
 </html>

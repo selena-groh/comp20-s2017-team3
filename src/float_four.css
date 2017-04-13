@@ -127,7 +127,7 @@ header .intro-text .name {
 }
 
 .main-game {
-  background-image: url(images/Background-full.png);
+  background-image: url(../res/Background-full.png);
   background-size: cover;
   background-repeat: no-repeat;
 }

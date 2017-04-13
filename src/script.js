@@ -45,13 +45,13 @@ function flipGravity() {
   
   for (c = 0; c < board.length; c += 1) {
 
-    colLen = board[c].length;
+    colLength = board[c].length;
     shift = 0;
 
     if(gravity) { // gravity normal
 
       // calculate number of slots to shift pieces
-      for (r = colLen - 1; r >= 0; r -= 1) {
+      for (r = colLength - 1; r >= 0; r -= 1) {
         if(board[c][r] == 0)
           shift++;
         else
@@ -59,16 +59,16 @@ function flipGravity() {
       }
 
       // swap pieces with empty slots
-      if(shift < colLen && shift > 0) {
-        pieceSlice = board[c].slice(0, colLen - shift);
-        emptySlice = board[c].slice(colLen - shift, colLen);
+      if(shift < colLength && shift > 0) {
+        pieceSlice = board[c].slice(0, colLength - shift);
+        emptySlice = board[c].slice(colLength - shift, colLength);
         board[c] = emptySlice.concat(pieceSlice);
       }
 
     } else { // gravity upside down
 
       // calculate number of slots to shift pieces
-      for (r = 0; r < colLen; r += 1) {
+      for (r = 0; r < colLength; r += 1) {
         if(board[c][r] == 0)
           shift++;
         else
@@ -76,8 +76,8 @@ function flipGravity() {
       }
 
       // swap pieces with empty slots
-      if(shift < colLen && shift > 0) {
-        pieceSlice = board[c].slice(shift, colLen);
+      if(shift < colLength && shift > 0) {
+        pieceSlice = board[c].slice(shift, colLength);
         emptySlice = board[c].slice(0, shift);
         board[c] = pieceSlice.concat(emptySlice);
       }
