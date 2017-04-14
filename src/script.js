@@ -98,3 +98,43 @@ function addToCol(player, c) {
     }
   }
 }
+
+// run checkWin at the end of each player's turn (so after they make a potentially
+// winning move)
+function checkWin(player) {
+  // horizontal check
+  for (var j = 0; j < 6-3 ; j++ ){
+        for (var i = 0; i < 7; i++){
+            if (board[i][j] == player && board[i][j+1] == player && board[i][j+2] == player && board[i][j+3] == player){
+                return true;
+            }           
+        }
+    }
+  // verticalCheck
+  for (var i = 0; i < 7-3 ; i++ ){
+      for (var j = 0; j < 6; j++){
+          if (board[i][j] == player && board[i+1][j] == player && board[i+2][j] == player && board[i+3][j] == player){
+              return true;
+          }           
+      }
+  }
+  // ascendingDiagonalCheck 
+  for (var i = 3; i < 7; i++){
+      for (var j = 0; j < 6-3; j++){
+          if (board[i][j] == player && board[i-1][j+1] == player && board[i-2][j+2] == player && board[i-3][j+3] == player)
+              return true;
+      }
+  }
+  // descendingDiagonalCheck
+  for (var i = 3; i < 7; i++){
+      for (var j = 3; j < 6; j++){
+          if (board[i][j] == player && board[i-1][j-1] == player && board[i-2][j-2] == player && board[i-3][j-3] == player)
+              return true;
+      }
+  }
+  return false;
+}
+
+
+
+
