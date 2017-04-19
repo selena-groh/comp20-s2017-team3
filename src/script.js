@@ -2,24 +2,21 @@ const COLUMNS = 7;
 const ROWS = 6;
 const EMPTY = 0, PLAYER_1 = 1, PLAYER_2 = 2;
 var gravity = true;
+var turn = PLAYER_1;
 
 var emptyBoard = [
-  [0, 1, 2, 3, 4, 5],
-  [1, 0, 0, 0, 0, 0],
-  [2, 0, 0, 0, 0, 0],
-  [3, 0, 0, 0, 0, 0],
-  [4, 0, 0, 0, 0, 0],
-  [5, 0, 0, 0, 0, 0],
-  [6, 0, 0, 0, 0, 0]
+  [0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0]
 ];
 
 var board = JSON.parse(JSON.stringify(emptyBoard));
 
 function start() {
-  printBoard();
-  addToCol(PLAYER_1, 4);
-  printBoard();
-  addToCol(PLAYER_2, 4);
   printBoard();
 }
 
@@ -137,6 +134,52 @@ function checkWin(player) {
   return false;
 }
 
+window.addEventListener('keyup', function(event) {
+  switch(event.keyCode) {
+    case 49:
+      addToCol(turn, 0);
+      break;
+    case 50:
+      addToCol(turn, 1);
+      break;
+    case 51:
+      addToCol(turn, 2);
+      break;
+    case 52:
+      addToCol(turn, 3);
+      break;
+    case 53:
+      addToCol(turn, 4);
+      break;
+    case 54:
+      addToCol(turn, 5);
+      break;
+    case 55:
+      addToCol(turn, 6);
+      break;
+    case 70:
+      flipGravity();
+      break;
+  }
+  
+  //updateGraphics();
+  printBoard();
+  if (checkWin(turn)) {
+    alert(turn + " won!");
+  } else {
+    if (turn === PLAYER_1) {
+      turn = PLAYER_2;
+    } else {
+      turn = PLAYER_1;
+    }
+  }
+}, false);
 
-
-
+/*Mousetrap.bind('1', function addToCol(turn, 0), 'keyup');
+Mousetrap.bind('2', function addToCol(turn, 1), 'keyup');
+Mousetrap.bind('3', function addToCol(turn, 2), 'keyup');
+Mousetrap.bind('4', function addToCol(turn, 3), 'keyup');
+Mousetrap.bind('5', function addToCol(turn, 4), 'keyup');
+Mousetrap.bind('6', function addToCol(turn, 5), 'keyup');
+Mousetrap.bind('7', function addToCol(turn, 6), 'keyup');
+Mousetrap.bind('f', function flipGravity(), 'keyup');*/
