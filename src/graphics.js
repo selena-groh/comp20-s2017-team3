@@ -76,4 +76,8 @@ Crafty.c('p2', {
 });
 
 
+function updateGraphics() {
+  
+}
+
 window.addEventListener('load', Game.start);
