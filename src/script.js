@@ -1,6 +1,6 @@
 const COLUMNS = 7;
-const ROW = 6;
-const EMPTY = 0; PLAYER_1 = 1, PLAYER_2 = 2;
+const ROWS = 6;
+const EMPTY = 0, PLAYER_1 = 1, PLAYER_2 = 2;
 var gravity = true;
 
 var emptyBoard = [

@@ -15,17 +15,17 @@ var emptyBoard = [
 var board = JSON.parse(JSON.stringify(emptyBoard));
 */
 
-var rowLen = board.length;
-var colLen = board[0].length;
+
+var entities = new Array(ROWS);
 
 Game = {
 
 	map_grid: {
-		width: rowLen,
-		height: colLen,
+		width: COLUMNS,
+		height: ROWS,
 		tile: {
-			width: $("#gamespace").width() / rowLen,
-			height: $("#gamespace").height() / colLen
+			width: $("#gamespace").width() / ROWS,
+			height: $("#gamespace").height() / COLUMNS
 		}
 	},
 
@@ -35,9 +35,14 @@ Game = {
 	start: function() {
 		Crafty.init(Game.width(), Game.height(), document.getElementById('gamespace'));
 		Crafty.background('rgb(0, 52, 102)');
+    initGraphics();
 
-		Crafty.e('p1').at(0, Game.map_grid.height-1);
-		Crafty.e('p2').at(0,Game.map_grid.height-2);
+		Crafty.e('piece').at(0, Game.map_grid.height-1);
+    Crafty.e('piece').at(0, Game.map_grid.height-2);
+    Crafty.e('piece').at(0, Game.map_grid.height-3);
+    Crafty.e('piece').at(0, Game.map_grid.height-4);
+    Crafty.e('piece').at(0, Game.map_grid.height-5);
+		Crafty.e('piece').at(0, Game.map_grid.height-6);
 	}
 }
 
@@ -61,23 +66,28 @@ Crafty.c('Grid', {
   }
 });
 
-Crafty.c('p1', {
+Crafty.c('piece', {
   init: function() {
     this.requires('2D, Canvas, Grid, Color');
-    this.color('rgb(157, 51, 0)');
+    this.color('rgb(0, 52, 102)');
   },
 });
-
-Crafty.c('p2', {
-  init: function() {
-    this.requires('2D, Canvas, Grid, Color');
-    this.color('rgb(157, 120, 0)');
-  },
-});
-
 
 function updateGraphics() {
-  
+
+}
+
+function initGraphics() {
+  for(var a = 0; a < ROWS; a++) {
+    entities[a] = new Array(COLUMNS);
+  }
+  for(var i = 0; i < COLUMNS; i++) {
+    for(var j = 0; j < ROWS; j++) {
+      console.log(i, j);
+      entities[i][j] = Crafty.e('piece');
+      entities[i][j].at(i, COLUMNS-j);
+    }
+  }
 }
 
 window.addEventListener('load', Game.start);
