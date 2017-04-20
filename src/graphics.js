@@ -73,7 +73,6 @@ function initGraphics() {
       entities[i][j].at(i, j);
       entities[i][j].color(boardColor);
       entities[i][j].attr({type: EMPTY});
-      // setPieceColor(i, j + ROWS);
     }
   }
 }

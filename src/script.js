@@ -1,64 +1,59 @@
-const COLUMNS = 7;
-const ROWS = 6;
+const COLUMNS = 7, ROWS = 6;
+const minColInput = 49, maxColInput = 49 + COLUMNS;
 const EMPTY = 0, PLAYER_1 = 1, PLAYER_2 = 2;
-var gravity;
-var gameWon;
 
-var emptyBoard = [
-  [0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0]
-];
-
-var playerColors = [ "#ffffff", "#ea3347", "#20a3d8" ];
-
-var board; 
+var gravity,
+    gameWon,
+    board,
+    currPlayer,
+    playerColors = [ "#ffffff", "#ea3347", "#20a3d8" ],
+    emptyBoard = [
+      [0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0]
+    ];
+ 
 var playerTurn = document.getElementById("turn");
 
+// initialize new game
 function start() {
   board = JSON.parse(JSON.stringify(emptyBoard));
-  gameWon = false;
-  turn = PLAYER_1;
-  playerTurn.innerHTML = "Player 1's Turn";
-  playerTurn.style.color = playerColors[1];
+  
+  currPlayer = PLAYER_1;
+  playerTurn.innerHTML = "Player " + currPlayer + "'s Turn";
+  playerTurn.style.color = playerColors[currPlayer];
+  
   gravity = true;
+  gameWon = false;
+  
+  return;
+}
+
+function restart() {
+  board = JSON.parse(JSON.stringify(emptyBoard));
+  
+  currPlayer = PLAYER_1;
+  playerTurn.innerHTML = "Player " + currPlayer + "'s Turn";
+  playerTurn.style.color = playerColors[currPlayer];
+  
+  gravity = true;
+  gameWon = false;
+  
   updateGraphics();
   return;
 }
 
-/*
-function printBoard() {
-  var game = document.getElementById("game");
-  var game_text = "";
-  var c, r;
-  
-  for (r = board[0].length - 1; r > -1; r -= 1) {
-    game_text += "<p>";
-    for (c = 0; c < board.length; c += 1) {
-      game_text += board[c][r];
-      if (c !== board.length - 1) {
-        game_text += " &nbsp; &nbsp; &nbsp; ";
-      }
-    }
-    game_text += "</p>";
-  }
-  
-  game.innerHTML = game_text;
-} */
-
 // flip gravity and recalculate pieces on the board
 function flipGravity() {
-  
   for (c = 0; c < board.length; c += 1) {
-
     colLength = board[c].length;
     shift = 0;
 
-    if(gravity) { // gravity normal
+    if (gravity) { // gravity normal
 
       // calculate number of slots to shift pieces
       for (r = colLength - 1; r >= 0; r -= 1) {
@@ -74,7 +69,7 @@ function flipGravity() {
         emptySlice = board[c].slice(colLength - shift, colLength);
         board[c] = emptySlice.concat(pieceSlice);
       }
-
+      
     } else { // gravity upside down
 
       // calculate number of slots to shift pieces
@@ -91,11 +86,8 @@ function flipGravity() {
         emptySlice = board[c].slice(0, shift);
         board[c] = pieceSlice.concat(emptySlice);
       }
-
     }
-
   }
-
   gravity = !gravity;
 }
 
@@ -123,39 +115,47 @@ function addToCol(player, c) {
 function checkWin(player) {
   // horizontal check
   for (var j = 0; j < ROWS-3 ; j++ ){
-        for (var i = 0; i < COLUMNS; i++){
-            if (board[i][j] == player && board[i][j+1] == player 
-              && board[i][j+2] == player && board[i][j+3] == player){
-                return true;
-            }           
-        }
+    for (var i = 0; i < COLUMNS; i++){
+      if (board[i][j] == player && board[i][j+1] == player 
+          && board[i][j+2] == player && board[i][j+3] == player) {
+        return true;
+      }           
     }
+  }
   // verticalCheck
   for (var i = 0; i < COLUMNS-3 ; i++ ){
-      for (var j = 0; j < ROWS; j++){
-          if (board[i][j] == player && board[i+1][j] == player 
-            && board[i+2][j] == player && board[i+3][j] == player){
-              return true;
-          }           
-      }
+    for (var j = 0; j < ROWS; j++){
+      if (board[i][j] == player && board[i+1][j] == player 
+          && board[i+2][j] == player && board[i+3][j] == player) {
+        return true;
+      }           
+    }
   }
   // ascendingDiagonalCheck 
   for (var i = 3; i < COLUMNS; i++){
-      for (var j = 0; j < ROWS-3; j++){
-          if (board[i][j] == player && board[i-1][j+1] == player 
-            && board[i-2][j+2] == player && board[i-3][j+3] == player)
-              return true;
+    for (var j = 0; j < ROWS-3; j++){
+      if (board[i][j] == player && board[i-1][j+1] == player 
+          && board[i-2][j+2] == player && board[i-3][j+3] == player) {
+        return true;
       }
+    }
   }
   // descendingDiagonalCheck
   for (var i = 3; i < COLUMNS; i++){
-      for (var j = 3; j < ROWS; j++){
-          if (board[i][j] == player && board[i-1][j-1] == player 
-            && board[i-2][j-2] == player && board[i-3][j-3] == player)
-              return true;
+    for (var j = 3; j < ROWS; j++){
+      if (board[i][j] == player && board[i-1][j-1] == player 
+          && board[i-2][j-2] == player && board[i-3][j-3] == player) {
+        return true;
       }
+    }
   }
   return false;
+}
+
+function updateCurrPlayer() {
+  currPlayer = (currPlayer === PLAYER_1 ? PLAYER_2 : PLAYER_1);
+  playerTurn.innerHTML = "Player " + currPlayer + "'s Turn";
+  playerTurn.style.color = playerColors[currPlayer];
 }
 
 function isColumnCode(keyCode) {
@@ -167,13 +167,14 @@ function isColumnCode(keyCode) {
 }
 
 function isCommandCode(keyCode) {
-  if (keyCode === 70 || keyCode ===82) {
+  if (keyCode === 70 || keyCode === 82) {
     return true;
   } else {
     return false;
   }
 }
 
+// keyboard controls
 window.addEventListener('keyup', function(event) {
   if (event.keyCode === 82) { // key r: restart
     gameWon = false;
@@ -183,50 +184,25 @@ window.addEventListener('keyup', function(event) {
   var columnChosen = -1;
   if (isColumnCode(event.keyCode)) {
     columnChosen = event.keyCode % 49;
-    addToCol(turn, columnChosen);
+    addToCol(currPlayer, columnChosen);
+    updateGraphics(columnChosen);
   } else {
     switch(event.keyCode) {
       case 70: // key f: flip
-        columnChosen = 10;
         flipGravity();
+        updateGraphics();
         break;
       case 82: // key r: restart
-        start();
+        restart();
         return;
     } 
   }
   
-  if(columnChosen == 10) {
-    updateGraphics();
-  } else if(columnChosen >= 0) {
-    updateGraphics(columnChosen);
-  }
-  //printBoard();
-  if (checkWin(turn)) {
-      playerTurn.innerHTML = "Player " + turn + " Won! Press 'r' to restart.";
-      playerTurn.style.color = playerColors[turn];
-      gameWon = true;121
+  if (checkWin(currPlayer)) {
+    playerTurn.innerHTML = "Player " + currPlayer + " Won! Press 'r' to restart.";
+    playerTurn.style.color = playerColors[currPlayer];
+    gameWon = true;
   } else {
-    turn = (turn === PLAYER_1 ? PLAYER_2 : PLAYER_1);
-    playerTurn.innerHTML = "Player " + turn + "'s Turn";
-    playerTurn.style.color = playerColors[turn];
-/*    if (turn === PLAYER_1) {
-      turn = PLAYER_2;
-      playerTurn.innerHTML = "Player 2's Turn";
-      playerTurn.style.color = playerColors[2];
-    } else {
-      turn = PLAYER_1;
-      playerTurn.innerHTML = "Player 1's Turn";
-      playerTurn.style.color = playerColors[1];
-    } */
+    updateCurrPlayer();
   }
 }, false);
-
-/*Mousetrap.bind('1', function addToCol(turn, 0), 'keyup');
-Mousetrap.bind('2', function addToCol(turn, 1), 'keyup');
-Mousetrap.bind('3', function addToCol(turn, 2), 'keyup');
-Mousetrap.bind('4', function addToCol(turn, 3), 'keyup');
-Mousetrap.bind('5', function addToCol(turn, 4), 'keyup');
-Mousetrap.bind('6', function addToCol(turn, 5), 'keyup');
-Mousetrap.bind('7', function addToCol(turn, 6), 'keyup');
-Mousetrap.bind('f', function flipGravity(), 'keyup');*/
