@@ -24,8 +24,8 @@ var score = document.getElementById("score");
 
 // initialize new game
 function start() {
-  var gamespace = document.getElementById("gamespace");
-  gamespace.height = gamespace.width / 6 * 7;
+  $("#gamespace").width($("#gamespace").height() / 6 * 7);
+  $("#column-labels").width($("#gamespace").width() - 20);
   
   board = JSON.parse(JSON.stringify(emptyBoard));
   

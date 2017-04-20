@@ -141,7 +141,6 @@ header .intro-text .name {
   outline: 5px solid white;
   display: block;
   background-color: #11233b;
-  vertical-align: center;
   align-self: center;
 }
 
@@ -156,7 +155,6 @@ header .intro-text .name {
 
 #column-labels {
   display: flex;
-  width: 360px;
   justify-content: space-between;
   padding-bottom: 10px;
 }
