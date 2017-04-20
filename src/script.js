@@ -24,6 +24,9 @@ var score = document.getElementById("score");
 
 // initialize new game
 function start() {
+  var gamespace = document.getElementById("gamespace");
+  gamespace.height = gamespace.width / 6 * 7;
+  
   board = JSON.parse(JSON.stringify(emptyBoard));
   
   currPlayer = PLAYER_1;

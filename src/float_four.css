@@ -136,8 +136,8 @@ header .intro-text .name {
 }
 
 .game .container {
-  height: 300px;
-  width: 450px;
+  height: 50%;
+  width: 430px;
   outline: 5px solid white;
   display: block;
   background-color: #11233b;
@@ -156,7 +156,7 @@ header .intro-text .name {
 
 #column-labels {
   display: flex;
-  width: 375px;
+  width: 360px;
   justify-content: space-between;
   padding-bottom: 10px;
 }
