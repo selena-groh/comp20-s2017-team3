@@ -137,7 +137,7 @@ header .intro-text .name {
 
 .game .container {
   height: 300px;
-  width: 450px;
+  width: 4f50px;
   outline: 5px solid white;
   display: block;
   background-color: #11233b;
@@ -150,7 +150,15 @@ header .intro-text .name {
 }
 
 #turn {
+  padding-top: 5px;
   color: #ea3347;
+}
+
+#column-labels {
+  display: flex;
+  width: 375px;
+  justify-content: space-between;
+  padding-bottom: 10px;
 }
 
 .footer {
