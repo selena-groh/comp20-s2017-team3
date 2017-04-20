@@ -200,7 +200,7 @@ function isColumnCode(keyCode) {
 }
 
 function isCommandCode(keyCode) {
-  if (keyCode === 70 || keyCode === 82) {
+  if (keyCode === 70 || keyCode === 78 || keyCode === 82) {
     return true;
   } else {
     return false;
@@ -227,6 +227,13 @@ window.addEventListener('keyup', function(event) {
         flipGravity();
         updateGraphics();
         break;
+      case 78: // key n: new game (clears scores)
+        p1WinCount = 0;
+        p2WinCount = 0;
+        score.innerHTML = "Player 1: " + p1WinCount + 
+                          "&nbsp; &nbsp; Player 2: " + p2WinCount;
+        restart();
+        return;
       case 82: // key r: restart
         restart();
         return;
