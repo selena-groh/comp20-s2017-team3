@@ -69,7 +69,6 @@ function initGraphics() {
   for(var i = 0; i < COLUMNS; i++) {
     entities[i] = new Array(ROWS);
     for(var j = 0; j < ROWS; j++) {
-      console.log(i, j);
       entities[i][j] = Crafty.e('piece');
       entities[i][j].at(i, j);
       entities[i][j].color(boardColor);

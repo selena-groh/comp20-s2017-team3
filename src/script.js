@@ -158,10 +158,16 @@ function checkWin(player) {
   return false;
 }
 
-function keyValid (keyCode) {
-  if (keyCode > 48 && keyCode < 55) {
+function isColumnCode(keyCode) {
+  if (keyCode > 48 && keyCode < 56) {
     return true;
-  } else if (keyCode === 70 || keyCode ===82) {
+  } else {
+    return false;
+  }
+}
+
+function isCommandCode(keyCode) {
+  if (keyCode === 70 || keyCode ===82) {
     return true;
   } else {
     return false;
@@ -172,45 +178,22 @@ window.addEventListener('keyup', function(event) {
   if (event.keyCode === 82) { // key r: restart
     gameWon = false;
   }
-  if (gameWon || !keyValid(event.keyCode)) { return; }
+  if (gameWon || !(isColumnCode(event.keyCode) || isCommandCode(event.keyCode) )) { return; }
   
   var columnChosen = -1;
-  switch(event.keyCode) {
-    case 49: // key 1
-      columnChosen = 0;
-      addToCol(turn, 0);
-      break;
-    case 50: // key 2
-      columnChosen = 1;
-      addToCol(turn, 1);
-      break;
-    case 51: // key 3
-      columnChosen = 2;
-      addToCol(turn, 2);
-      break;
-    case 52: // key 4
-      columnChosen = 3;
-      addToCol(turn, 3);
-      break;
-    case 53: // key 5
-      columnChosen = 4;
-      addToCol(turn, 4);
-      break;
-    case 54: // key 6
-      columnChosen = 5;
-      addToCol(turn, 5);
-      break;
-    case 55: // key 7
-      columnChosen = 6;
-      addToCol(turn, 6);
-      break;
-    case 70: // key f: flip
-      columnChosen = 10;
-      flipGravity();
-      break;
-    case 82: // key r: restart
-      start();
-      return;
+  if (isColumnCode(event.keyCode)) {
+    columnChosen = event.keyCode % 49;
+    addToCol(turn, columnChosen);
+  } else {
+    switch(event.keyCode) {
+      case 70: // key f: flip
+        columnChosen = 10;
+        flipGravity();
+        break;
+      case 82: // key r: restart
+        start();
+        return;
+    } 
   }
   
   if(columnChosen == 10) {
