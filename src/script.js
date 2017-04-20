@@ -23,7 +23,10 @@ function start() {
   board = JSON.parse(JSON.stringify(emptyBoard));
   gameWon = false;
   turn = PLAYER_1;
+  playerTurn.innerHTML = "Player 1's Turn";
+  playerTurn.style.color = playerColors[1];
   gravity = true;
+  updateGraphics();
   return;
 }
 
@@ -155,8 +158,21 @@ function checkWin(player) {
   return false;
 }
 
+function keyValid (keyCode) {
+  if (keyCode > 48 && keyCode < 55) {
+    return true;
+  } else if (keyCode === 70 || keyCode ===82) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
 window.addEventListener('keyup', function(event) {
-  if (gameWon) { return; }
+  if (event.keyCode === 82) { // key r: restart
+    gameWon = false;
+  }
+  if (gameWon || !keyValid(event.keyCode)) { return; }
   
   var columnChosen = -1;
   switch(event.keyCode) {
@@ -188,14 +204,13 @@ window.addEventListener('keyup', function(event) {
       columnChosen = 6;
       addToCol(turn, 6);
       break;
-    case 70: // key f
+    case 70: // key f: flip
       columnChosen = 10;
       flipGravity();
       break;
-    case 82: // key r
-      columnChosen = 10;
+    case 82: // key r: restart
       start();
-      break;
+      return;
   }
   
   if(columnChosen == 10) {
@@ -205,11 +220,14 @@ window.addEventListener('keyup', function(event) {
   }
   //printBoard();
   if (checkWin(turn)) {
-      playerTurn.innerHTML = "Player " + turn + " Won!";
+      playerTurn.innerHTML = "Player " + turn + " Won! Press 'r' to restart.";
       playerTurn.style.color = playerColors[turn];
-      gameWon = true;
+      gameWon = true;121
   } else {
-    if (turn === PLAYER_1) {
+    turn = (turn === PLAYER_1 ? PLAYER_2 : PLAYER_1);
+    playerTurn.innerHTML = "Player " + turn + "'s Turn";
+    playerTurn.style.color = playerColors[turn];
+/*    if (turn === PLAYER_1) {
       turn = PLAYER_2;
       playerTurn.innerHTML = "Player 2's Turn";
       playerTurn.style.color = playerColors[2];
@@ -217,7 +235,7 @@ window.addEventListener('keyup', function(event) {
       turn = PLAYER_1;
       playerTurn.innerHTML = "Player 1's Turn";
       playerTurn.style.color = playerColors[1];
-    }
+    } */
   }
 }, false);
 
