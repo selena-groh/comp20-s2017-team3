@@ -130,24 +130,27 @@ header .intro-text .name {
   background-image: url(../res/Background-full.png);
   background-size: cover;
   background-repeat: no-repeat;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .game .container {
   height: 300px;
   width: 450px;
   outline: 5px solid white;
-  display: flex;
-  vertical-align: center;
-  align-items: center;
+  display: block;
   background-color: #11233b;
-}
-
-.game .container h2 {
-  width: 100%;
+  vertical-align: center;
+  align-self: center;
 }
 
 .jumbotron h1, .jumbotron h2, .jumbotron p {
   color: white;
+}
+
+#turn {
+  color: #ea3347;
 }
 
 .footer {
