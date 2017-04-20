@@ -1,31 +1,16 @@
-/*
-const EMPTY = 0; PLAYER_1 = 1, PLAYER_2 = 2;
-var gravity = true;
-
-var emptyBoard = [
-  [0, 1, 2, 3, 4, 5],
-  [1, 0, 0, 0, 0, 0],
-  [2, 0, 0, 0, 0, 0],
-  [3, 0, 0, 0, 0, 0],
-  [4, 0, 0, 0, 0, 0],
-  [5, 0, 0, 0, 0, 0],
-  [6, 0, 0, 0, 0, 0]
-];
-
-var board = JSON.parse(JSON.stringify(emptyBoard));
-*/
-
-
-var entities = new Array(ROWS);
+var entities = new Array(COLUMNS);
+const boardColor = "#003466";
+const p1Color = "#9D3300";
+const p2Color = "#9D7800";
 
 Game = {
 
 	map_grid: {
-		width: COLUMNS,
-		height: ROWS,
+		width: ROWS,
+		height: COLUMNS,
 		tile: {
-			width: $("#gamespace").width() / ROWS,
-			height: $("#gamespace").height() / COLUMNS
+			width: $("#gamespace").width() / COLUMNS,
+			height: $("#gamespace").height() / ROWS
 		}
 	},
 
@@ -34,15 +19,8 @@ Game = {
 
 	start: function() {
 		Crafty.init(Game.width(), Game.height(), document.getElementById('gamespace'));
-		Crafty.background('rgb(0, 52, 102)');
+		Crafty.background(boardColor);
     initGraphics();
-
-		Crafty.e('piece').at(0, Game.map_grid.height-1);
-    Crafty.e('piece').at(0, Game.map_grid.height-2);
-    Crafty.e('piece').at(0, Game.map_grid.height-3);
-    Crafty.e('piece').at(0, Game.map_grid.height-4);
-    Crafty.e('piece').at(0, Game.map_grid.height-5);
-		Crafty.e('piece').at(0, Game.map_grid.height-6);
 	}
 }
 
@@ -69,24 +47,47 @@ Crafty.c('Grid', {
 Crafty.c('piece', {
   init: function() {
     this.requires('2D, Canvas, Grid, Color');
-    this.color('rgb(0, 52, 102)');
+    this.color(boardColor);
   },
 });
 
 function updateGraphics() {
+  for(var i = 0; i < COLUMNS; i++) {
+    for(var j = 0; j < ROWS; j++) {
+      setPieceColor(i, j);
+    }
+  }
+}
 
+function updateGraphicsCol(col) {
+  for(var j = 0; j < ROWS; j++) {
+    setPieceColor(col, j);
+  }
 }
 
 function initGraphics() {
-  for(var a = 0; a < ROWS; a++) {
-    entities[a] = new Array(COLUMNS);
-  }
   for(var i = 0; i < COLUMNS; i++) {
+    entities[i] = new Array(ROWS);
     for(var j = 0; j < ROWS; j++) {
       console.log(i, j);
       entities[i][j] = Crafty.e('piece');
-      entities[i][j].at(i, COLUMNS-j);
+      entities[i][j].at(i, j);
+      entities[i][j].color(boardColor);
+      entities[i][j].attr({type: EMPTY});
+      // setPieceColor(i, j + ROWS);
     }
+  }
+}
+
+function setPieceColor(c, r) {
+  if(board[c][r] == PLAYER_1) {
+    entities[c][ROWS-r-1].color(p1Color);
+    entities[c][ROWS-r-1].attr({type: PLAYER_1});
+  } else if(board[c][r] == PLAYER_2) {
+    entities[c][ROWS-r-1].color(p2Color);
+    entities[c][ROWS-r-1].attr({type: PLAYER_2});
+  } else {
+    entities[c][ROWS-r-1].color(boardColor);
   }
 }
 
