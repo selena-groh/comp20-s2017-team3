@@ -36,7 +36,7 @@ header .intro-text .name {
 
 .navbar {
   margin-bottom: 0px;
-  padding: 25px;
+  padding: 15px;
 }
 
 .navbar img {
@@ -99,7 +99,7 @@ header .intro-text .name {
 }
 @media (min-width: 768px) {
   .navbar-custom {
-    padding: 25px;
+    padding: 15px;
     -webkit-transition: padding 0.3s;
     -moz-transition: padding 0.3s;
     transition: padding 0.3s;
@@ -119,7 +119,7 @@ header .intro-text .name {
 }
 
 .jumbotron {
-  height: calc(100% - 100px - 60px);
+  height: calc(100% - 80px - 50px);
   background-color: #11233b;
   display: flex;
   align-items: center;
@@ -145,7 +145,7 @@ header .intro-text .name {
   align-self: center;
 }
 
-.jumbotron h1, .jumbotron h2, .jumbotron p {
+.jumbotron h1, .jumbotron h2, .jumbotron h3, .jumbotron p {
   color: white;
 }
 
@@ -157,7 +157,7 @@ header .intro-text .name {
   position: fixed;
   bottom: 0;
   width: 100%;
-  height: 60px;
+  height: 50px;
   background-color: lightgray;
   color: darkslategray;
   display: flex;

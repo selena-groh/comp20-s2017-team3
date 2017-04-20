@@ -1,11 +1,13 @@
 const COLUMNS = 7, ROWS = 6;
 const minColInput = 49, maxColInput = 49 + COLUMNS;
-const EMPTY = 0, PLAYER_1 = 1, PLAYER_2 = 2;
+const EMPTY = 0, PLAYER_1 = 1, PLAYER_2 = 2, PLAYERS_TIED = 0;
 
 var gravity,
     gameWon,
     board,
     currPlayer,
+    p1WinCount = 0,
+    p2WinCount = 0,
     playerColors = [ "#ffffff", "#ea3347", "#20a3d8" ],
     emptyBoard = [
       [0, 0, 0, 0, 0, 0],
@@ -18,6 +20,7 @@ var gravity,
     ];
  
 var playerTurn = document.getElementById("turn");
+var score = document.getElementById("score");
 
 // initialize new game
 function start() {
@@ -26,6 +29,8 @@ function start() {
   currPlayer = PLAYER_1;
   playerTurn.innerHTML = "Player " + currPlayer + "'s Turn";
   playerTurn.style.color = playerColors[currPlayer];
+  score.innerHTML = "Player 1: " + p1WinCount + 
+                    "&nbsp; &nbsp; Player 2: " + p2WinCount;
   
   gravity = true;
   gameWon = false;
@@ -110,9 +115,37 @@ function addToCol(player, c) {
   }
 }
 
-// run checkWin at the end of each player's turn (so after they make a potentially
-// winning move)
-function checkWin(player) {
+function checkWin() {
+  var player1Won = checkPlayerWin(PLAYER_1);
+  var player2Won = checkPlayerWin(PLAYER_2);
+  
+  if (player1Won && player2Won) {
+    playerTurn.innerHTML = "It's a tie! Press 'r' to restart.";
+    playerTurn.style.color = playerColors[PLAYERS_TIED];
+    p1WinCount += 1;
+    p2WinCount += 1;
+    gameWon = true;    
+  } else if (player1Won) {
+    playerTurn.innerHTML = "Player " + 1 + " Won! Press 'r' to restart.";
+    playerTurn.style.color = playerColors[1];
+    p1WinCount += 1;
+    gameWon = true;
+  } else if (player2Won) {
+    playerTurn.innerHTML = "Player " + 2 + " Won! Press 'r' to restart.";
+    playerTurn.style.color = playerColors[2];
+    p2WinCount += 1;
+    gameWon = true;
+  } else {
+    gameWon = false;
+  }
+  
+  score.innerHTML = "Player 1: " + p1WinCount + 
+                    "&nbsp; &nbsp; Player 2: " + p2WinCount;
+  
+  return gameWon;
+}
+
+function checkPlayerWin(player) {
   // horizontal check
   for (var j = 0; j < ROWS-3 ; j++ ){
     for (var i = 0; i < COLUMNS; i++){
@@ -179,7 +212,9 @@ window.addEventListener('keyup', function(event) {
   if (event.keyCode === 82) { // key r: restart
     gameWon = false;
   }
-  if (gameWon || !(isColumnCode(event.keyCode) || isCommandCode(event.keyCode) )) { return; }
+  if (gameWon || !(isColumnCode(event.keyCode) || isCommandCode(event.keyCode) )) {
+    return;
+  }
   
   var columnChosen = -1;
   if (isColumnCode(event.keyCode)) {
@@ -198,11 +233,8 @@ window.addEventListener('keyup', function(event) {
     } 
   }
   
-  if (checkWin(currPlayer)) {
-    playerTurn.innerHTML = "Player " + currPlayer + " Won! Press 'r' to restart.";
-    playerTurn.style.color = playerColors[currPlayer];
-    gameWon = true;
-  } else {
+  checkWin();
+  if (!gameWon) {
     updateCurrPlayer();
   }
 }, false);
