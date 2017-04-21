@@ -101,14 +101,14 @@ function flipGravity() {
 
 // add a piece belonging to player to column c
 function addToCol(player, c) {
-  if(gravity) {
+  if(gravity) { // if gravity is on
     for (r = 0; r < board[c].length; r += 1) {
       if (board[c][r] === EMPTY) {
         board[c][r] = player;
         return;
       }
     }
-  } else {
+  } else { // normal
     for (r = board[c].length-1; r >= 0; r -= 1) {
       if (board[c][r] === EMPTY) {
         board[c][r] = player;
