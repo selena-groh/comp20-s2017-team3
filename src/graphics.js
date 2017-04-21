@@ -18,9 +18,11 @@ Game = {
 	height: function() { return $("#gamespace").height(); },
 
 	start: function() {
+        Game.map_grid.tile.width = $("#gamespace").width() / COLUMNS;
+        Game.map_grid.tile.height = $("#gamespace").height() / ROWS;
 		Crafty.init(Game.width(), Game.height(), document.getElementById('gamespace'));
 		Crafty.background(boardColor);
-    initGraphics();
+        initGraphics();
 	}
 }
 
