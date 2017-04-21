@@ -22,9 +22,11 @@ var gravity,
 var playerTurn = document.getElementById("turn");
 var score = document.getElementById("score");
 
+//$(window).resize(sizeGamespace);
+
 // initialize new game
 function start() {
-  initGamespace();  
+  sizeGamespace();  
   initVariables();  
   return;
 }
@@ -36,9 +38,9 @@ function restart() {
   return;
 }
 
-function initGamespace() {
+function sizeGamespace() {
   $("#gamespace").width($("#gamespace").height() / 6 * 7);
-  $("#column-labels").width($("#gamespace").width() - 20);
+  $("#column-labels").width($("#gamespace").width());
 }
 
 function initVariables() {
