@@ -1,7 +1,7 @@
 var entities = new Array(COLUMNS);
 const boardColor = "#003466";
-const p1Color = "#ea3347";
-const p2Color = "#20a3d8";
+const p1Color = playerColors[1];
+const p2Color = playerColors[2];
 
 Game = {
 
