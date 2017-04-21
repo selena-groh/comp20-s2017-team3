@@ -64,17 +64,22 @@ function isCommandCode(keyCode) {
 }
 
 // keyboard controls
-window.addEventListener('keyup', function(event) {
-  if (event.keyCode === 82) { // key r: restart
+// window.addEventListener('keyup', function(event) {
+//   console.log("native keypress");
+//   processKey(event.keyCode);
+// }, false);
+
+function processKey(keyCode) {
+  if (keyCode === 82) { // key r: restart
     gameWon = false;
   }
-  if (gameWon || !(isColumnCode(event.keyCode) || isCommandCode(event.keyCode))) {
+  if (gameWon || !(isColumnCode(keyCode) || isCommandCode(keyCode))) {
     return;
   }
   
   var columnChosen = -1;
-  if (isColumnCode(event.keyCode)) {
-    columnChosen = event.keyCode % 49;
+  if (isColumnCode(keyCode)) {
+    columnChosen = keyCode % 49;
     // check if valid move  
     if(addToCol(currPlayer, columnChosen)) {
         updateGraphics(columnChosen);
@@ -84,7 +89,7 @@ window.addEventListener('keyup', function(event) {
         return;
     }
   } else {
-    switch(event.keyCode) {
+    switch(keyCode) {
       case 70: // key f: flip
         flipGravity();
         updateGraphics();
@@ -104,7 +109,7 @@ window.addEventListener('keyup', function(event) {
   if (!gameWon) {
     updateCurrPlayer();
   }
-}, false);
+}
 
 // add a piece belonging to player to column c
 function addToCol(player, c) {

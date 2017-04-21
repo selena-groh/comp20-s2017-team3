@@ -2,28 +2,29 @@ var entities = new Array(COLUMNS);
 const boardColor = "#003466";
 const p1Color = playerColors[1];
 const p2Color = playerColors[2];
+var graphicsKey = false;
 
 Game = {
 
-	map_grid: {
-		width: ROWS,
-		height: COLUMNS,
-		tile: {
-			width: $("#gamespace").width() / COLUMNS,
-			height: $("#gamespace").height() / ROWS
-		}
-	},
+  map_grid: {
+    width: ROWS,
+    height: COLUMNS,
+    tile: {
+      width: $("#gamespace").width() / COLUMNS,
+      height: $("#gamespace").height() / ROWS
+    }
+  },
 
-	width: function() { return $("#gamespace").width(); },
-	height: function() { return $("#gamespace").height(); },
+  width: function() { return $("#gamespace").width(); },
+  height: function() { return $("#gamespace").height(); },
 
-	start: function() {
+  start: function() {
         Game.map_grid.tile.width = $("#gamespace").width() / COLUMNS;
         Game.map_grid.tile.height = $("#gamespace").height() / ROWS;
-		Crafty.init(Game.width(), Game.height(), document.getElementById('gamespace'));
-		Crafty.background(boardColor);
+    Crafty.init(Game.width(), Game.height(), document.getElementById('gamespace'));
+    Crafty.background(boardColor);
         initGraphics();
-	}
+  }
 }
 
 // src: http://buildnewgames.com/introduction-to-crafty/
@@ -71,10 +72,19 @@ function initGraphics() {
   for(var i = 0; i < COLUMNS; i++) {
     entities[i] = new Array(ROWS);
     for(var j = 0; j < ROWS; j++) {
-      entities[i][j] = Crafty.e('piece');
+      entities[i][j] = Crafty.e('piece')
+      .attr({type: EMPTY})
+      .color(boardColor)
+      .bind('KeyUp', function(k) {
+        if(graphicsKey) {
+          processKey(k.key);
+          graphicsKey = false;
+        }
+      })
+      .bind('KeyDown', function(k) {
+        graphicsKey = true;
+      });
       entities[i][j].at(i, j);
-      entities[i][j].color(boardColor);
-      entities[i][j].attr({type: EMPTY});
     }
   }
 }
