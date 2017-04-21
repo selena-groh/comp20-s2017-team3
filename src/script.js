@@ -6,8 +6,8 @@ var gravity,
     gameWon,
     board,
     currPlayer,
-    p1WinCount = 0,
-    p2WinCount = 0,
+    p1Score = 0,
+    p2Score = 0,
     playerColors = [ "#ffffff", "#ea3347", "#20a3d8" ],
     emptyBoard = [
       [0, 0, 0, 0, 0, 0],
@@ -24,9 +24,7 @@ var score = document.getElementById("score");
 
 // initialize new game
 function start() {
-  $("#gamespace").width($("#gamespace").height() / 6 * 7);
-  $("#column-labels").width($("#gamespace").width() - 20);
-  
+  initGamespace();  
   initVariables();  
   return;
 }
@@ -38,11 +36,17 @@ function restart() {
   return;
 }
 
+function initGamespace() {
+  $("#gamespace").width($("#gamespace").height() / 6 * 7);
+  $("#column-labels").width($("#gamespace").width() - 20);
+}
+
 function initVariables() {
   board = JSON.parse(JSON.stringify(emptyBoard));
   
   currPlayer = PLAYER_1;
   updateCurrPlayerMessage();
+  
   updateScore();
   
   gravity = true;
@@ -62,7 +66,7 @@ window.addEventListener('keyup', function(event) {
   if (event.keyCode === 82) { // key r: restart
     gameWon = false;
   }
-  if (gameWon || !(isColumnCode(event.keyCode) || isCommandCode(event.keyCode) )) {
+  if (gameWon || !(isColumnCode(event.keyCode) || isCommandCode(event.keyCode))) {
     return;
   }
   
@@ -78,9 +82,8 @@ window.addEventListener('keyup', function(event) {
         updateGraphics();
         break;
       case 78: // key n: new game (clears scores)
-        p1WinCount = 0;
-        p2WinCount = 0;
-        updateScore();
+        p1Score = 0;
+        p2Score = 0;
         restart();
         return;
       case 82: // key r: restart
@@ -164,16 +167,16 @@ function checkWin() {
   
   if (player1Won && player2Won) {
     updateWinMessage(TIE);
-    p1WinCount += 1;
-    p2WinCount += 1;
+    p1Score += 1;
+    p2Score += 1;
     gameWon = true;    
   } else if (player1Won) {
     updateWinMessage(PLAYER_1);
-    p1WinCount += 1;
+    p1Score += 1;
     gameWon = true;
   } else if (player2Won) {
     updateWinMessage(PLAYER_2);
-    p2WinCount += 1;
+    p2Score += 1;
     gameWon = true;
   } else {
     gameWon = false;
@@ -225,8 +228,7 @@ function checkPlayerWin(player) {
 }
 
 function updateScore() {
-  score.innerHTML = "Player 1: " + p1WinCount + 
-                    "&nbsp; &nbsp; Player 2: " + p2WinCount;
+  score.innerHTML = "Player 1: " + p1Score + "&nbsp; &nbsp; Player 2: " + p2Score;
 }
 
 function updateWinMessage(winner) {
