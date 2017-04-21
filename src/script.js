@@ -75,8 +75,14 @@ window.addEventListener('keyup', function(event) {
   var columnChosen = -1;
   if (isColumnCode(event.keyCode)) {
     columnChosen = event.keyCode % 49;
-    addToCol(currPlayer, columnChosen);
-    updateGraphics(columnChosen);
+    // check if valid move  
+    if(addToCol(currPlayer, columnChosen)) {
+        updateGraphics(columnChosen);
+    }
+    else{
+        playerTurn.innerHTML = "invalid move, try again"
+        return;
+    }
   } else {
     switch(event.keyCode) {
       case 70: // key f: flip
@@ -106,17 +112,18 @@ function addToCol(player, c) {
     for (r = 0; r < board[c].length; r += 1) {
       if (board[c][r] === EMPTY) {
         board[c][r] = player;
-        return;
+        return true;
       }
     }
   } else {
     for (r = board[c].length - 1; r >= 0; r -= 1) {
       if (board[c][r] === EMPTY) {
         board[c][r] = player;
-        return;
+        return true;
       }
     }
   }
+  return false;
 }
 
 // flip gravity and recalculate pieces on the board
@@ -163,28 +170,6 @@ function flipGravity() {
   gravity = !gravity;
 }
 
-<<<<<<< HEAD
-// add a piece belonging to player to column c
-function addToCol(player, c) {
-  if(gravity) { // if gravity is on
-    for (r = 0; r < board[c].length; r += 1) {
-      if (board[c][r] === EMPTY) {
-        board[c][r] = player;
-        return;
-      }
-    }
-  } else { // normal
-    for (r = board[c].length-1; r >= 0; r -= 1) {
-      if (board[c][r] === EMPTY) {
-        board[c][r] = player;
-        return;
-      }
-    }
-  }
-}
-
-=======
->>>>>>> 0fc41ee8b8d9b66185028fb0e59b6d0bb259b79c
 function checkWin() {
   var player1Won = checkPlayerWin(PLAYER_1);
   var player2Won = checkPlayerWin(PLAYER_2);
