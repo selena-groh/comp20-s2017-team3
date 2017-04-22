@@ -70,9 +70,10 @@ function isCommandCode(keyCode) {
 // }, false);
 
 function processKey(keyCode) {
-  if (keyCode === 82) { // key r: restart
+  if (keyCode === 78 || keyCode === 82) { // restart or new game
     gameWon = false;
   }
+  
   if (gameWon || !(isColumnCode(keyCode) || isCommandCode(keyCode))) {
     return;
   }
