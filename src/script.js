@@ -85,7 +85,7 @@ function processKey(keyCode) {
         updateGraphics(columnChosen);
     }
     else{
-        playerTurn.innerHTML = "invalid move, try again"
+        playerTurn.innerHTML = "Invalid Move"
         return;
     }
   } else {
