@@ -53,6 +53,8 @@ function initVariables() {
   
   gravity = true;
   gameWon = false;
+
+  document.getElementById('game-full').style.backgroundImage="url(../res/Background-full-wide-down.png)";
 }
 
 function isColumnCode(keyCode) {
