@@ -159,6 +159,27 @@ header .intro-text .name {
   padding-bottom: 10px;
 }
 
+.modal-content h1 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 30px;
+  text-align: center;
+  margin: 10px;
+  padding: 0px;
+}
+
+.modal-content p {
+  font-family: "Helvetica Neue", sans-serif;
+  text-align: center;
+  margin: 10px;
+}
+
+.modal-header {
+  border-top-right-radius: 6px;
+  border-top-left-radius: 6px;
+  background-color: rgb(32,163,217);
+  padding: 8px;
+}
+
 .footer {
   position: fixed;
   bottom: 0;

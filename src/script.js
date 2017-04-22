@@ -264,3 +264,15 @@ function updateCurrPlayerMessage() {
   playerTurn.innerHTML = "Player " + currPlayer + "'s Turn";
   playerTurn.style.color = playerColors[currPlayer];
 }
+
+//Instructions pop up box
+BootstrapDialog.show({
+  title: '<h1> Instructions </h1>',
+    message: "<p> Use your number keys (1, 2, 3, 4, 5, 6, & 7) to play your discs.</p> <p> Press 'f' to flip the board and 'r' to restart </p>",
+    buttons: [{
+      label: 'Play!',
+        action: function(dialog) {
+          dialog.close();
+        }
+    }]
+});
