@@ -127,12 +127,13 @@ header .intro-text .name {
 }
 
 .main-game {
-  background-image: url(../res/Background-full.png);
+  background-image: url(../res/Background-full-wide.png);
   background-size: cover;
   background-repeat: no-repeat;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-position: center;
 }
 
 .game .container {
