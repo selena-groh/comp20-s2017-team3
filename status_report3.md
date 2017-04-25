@@ -25,3 +25,7 @@ GOALS FOR NEXT WEEK:
         1. Implement "multiplayer" so players can play from different computers
         2. Match players together
         3. Add game instructions for players
+
+# Comments by Ming
+* Good getting game board up
+* "Still need to make decision on how a person finds an opponent." => doesn't have to be perfect.  Something hacked up will be perfect.  Ask if anyone else is doing this.
