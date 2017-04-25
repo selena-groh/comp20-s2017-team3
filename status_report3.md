@@ -29,3 +29,4 @@ GOALS FOR NEXT WEEK:
 # Comments by Ming
 * Good getting game board up
 * "Still need to make decision on how a person finds an opponent." => doesn't have to be perfect.  Something hacked up will be perfect.  Ask if anyone else is doing this.
+* Note: multiplayer isn't trivial...
