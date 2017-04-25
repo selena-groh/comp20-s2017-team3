@@ -120,10 +120,15 @@ header .intro-text .name {
 
 .jumbotron {
   height: calc(100% - 80px - 50px);
-  background-color: #11233b;
+  background-image: url(../res/Index_BG_3.png);
   display: flex;
   align-items: center;
   margin-bottom: 0px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  flex-direction: column;
+  justify-content: center;
+  background-position: center;
 }
 
 .main-game {
