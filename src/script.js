@@ -53,6 +53,8 @@ function initVariables() {
   
   gravity = true;
   gameWon = false;
+
+  document.getElementById('game-full').style.backgroundImage="url(../res/Background-full-wide-down.png)";
 }
 
 function isColumnCode(keyCode) {
@@ -64,21 +66,33 @@ function isCommandCode(keyCode) {
 }
 
 // keyboard controls
-window.addEventListener('keyup', function(event) {
-  if (event.keyCode === 82) { // key r: restart
+// window.addEventListener('keyup', function(event) {
+//   console.log("native keypress");
+//   processKey(event.keyCode);
+// }, false);
+
+function processKey(keyCode) {
+  if (keyCode === 78 || keyCode === 82) { // restart or new game
     gameWon = false;
   }
-  if (gameWon || !(isColumnCode(event.keyCode) || isCommandCode(event.keyCode))) {
+  
+  if (gameWon || !(isColumnCode(keyCode) || isCommandCode(keyCode))) {
     return;
   }
   
   var columnChosen = -1;
-  if (isColumnCode(event.keyCode)) {
-    columnChosen = event.keyCode % 49;
-    addToCol(currPlayer, columnChosen);
-    updateGraphics(columnChosen);
+  if (isColumnCode(keyCode)) {
+    columnChosen = keyCode % 49;
+    // check if valid move  
+    if(addToCol(currPlayer, columnChosen)) {
+        updateGraphics(columnChosen);
+    }
+    else{
+        playerTurn.innerHTML = "Invalid Move"
+        return;
+    }
   } else {
-    switch(event.keyCode) {
+    switch(keyCode) {
       case 70: // key f: flip
         flipGravity();
         updateGraphics();
@@ -98,7 +112,7 @@ window.addEventListener('keyup', function(event) {
   if (!gameWon) {
     updateCurrPlayer();
   }
-}, false);
+}
 
 // add a piece belonging to player to column c
 function addToCol(player, c) {
@@ -106,17 +120,18 @@ function addToCol(player, c) {
     for (r = 0; r < board[c].length; r += 1) {
       if (board[c][r] === EMPTY) {
         board[c][r] = player;
-        return;
+        return true;
       }
     }
   } else {
     for (r = board[c].length - 1; r >= 0; r -= 1) {
       if (board[c][r] === EMPTY) {
         board[c][r] = player;
-        return;
+        return true;
       }
     }
   }
+  return false;
 }
 
 // flip gravity and recalculate pieces on the board
@@ -126,7 +141,8 @@ function flipGravity() {
     shift = 0;
 
     if (gravity) { // gravity normal
-
+      //change background gravity direction
+      document.getElementById('game-full').style.backgroundImage="url(../res/Background-full-wide-up.png)";
       // calculate number of slots to shift pieces
       for (r = colLength - 1; r >= 0; r -= 1) {
         if(board[c][r] == 0)
@@ -143,7 +159,8 @@ function flipGravity() {
       }
       
     } else { // gravity upside down
-
+      //change background gravity direction
+      document.getElementById('game-full').style.backgroundImage="url(../res/Background-full-wide-down.png)";
       // calculate number of slots to shift pieces
       for (r = 0; r < colLength; r += 1) {
         if(board[c][r] == 0)
@@ -251,3 +268,15 @@ function updateCurrPlayerMessage() {
   playerTurn.innerHTML = "Player " + currPlayer + "'s Turn";
   playerTurn.style.color = playerColors[currPlayer];
 }
+
+//Instructions pop up box
+BootstrapDialog.show({
+  title: '<h1> Instructions </h1>',
+    message: "<p> Use your number keys (1, 2, 3, 4, 5, 6, & 7) to play your discs.</p> <p> Press 'f' to flip the board and 'r' to restart </p>",
+    buttons: [{
+      label: 'Play!',
+        action: function(dialog) {
+          dialog.close();
+        }
+    }]
+});

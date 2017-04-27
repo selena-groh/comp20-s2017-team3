@@ -120,19 +120,25 @@ header .intro-text .name {
 
 .jumbotron {
   height: calc(100% - 80px - 50px);
-  background-color: #11233b;
+  background-image: url(../res/Index_BG_3.png);
   display: flex;
   align-items: center;
   margin-bottom: 0px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  flex-direction: column;
+  justify-content: center;
+  background-position: center;
 }
 
 .main-game {
-  background-image: url(../res/Background-full.png);
+  background-image: url(../res/Background-full-wide-down.png);
   background-size: cover;
   background-repeat: no-repeat;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-position: center;
 }
 
 #gamespace {
@@ -157,6 +163,27 @@ header .intro-text .name {
   display: flex;
   justify-content: space-around;
   padding-bottom: 10px;
+}
+
+.modal-content h1 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 30px;
+  text-align: center;
+  margin: 10px;
+  padding: 0px;
+}
+
+.modal-content p {
+  font-family: "Helvetica Neue", sans-serif;
+  text-align: center;
+  margin: 10px;
+}
+
+.modal-header {
+  border-top-right-radius: 6px;
+  border-top-left-radius: 6px;
+  background-color: rgb(32,163,217);
+  padding: 8px;
 }
 
 .footer {
