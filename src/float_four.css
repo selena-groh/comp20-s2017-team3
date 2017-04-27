@@ -119,7 +119,7 @@ header .intro-text .name {
 }
 
 .jumbotron {
-  height: calc(100% - 80px - 50px);
+  height: calc(100% - 80px);
   background-image: url(../res/Index_BG_3.png);
   display: flex;
   align-items: center;
@@ -142,7 +142,7 @@ header .intro-text .name {
 }
 
 #gamespace {
-  height: 50%;
+  height: 70%;
   width: 430px;
   outline: 5px solid white;
   display: block;
