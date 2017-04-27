@@ -135,7 +135,7 @@ header .intro-text .name {
   align-items: center;
 }
 
-.game .container {
+#gamespace {
   height: 50%;
   width: 430px;
   outline: 5px solid white;
