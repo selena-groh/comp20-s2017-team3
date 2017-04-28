@@ -1,6 +1,7 @@
 const COLUMNS = 7, ROWS = 6;
 const minColInput = 49, maxColInput = 49 + COLUMNS;
 const EMPTY = 0, PLAYER_1 = 1, PLAYER_2 = 2, TIE = 0;
+const FULLBOARD = 42;
 
 var gravity,
     gameWon,
@@ -8,6 +9,7 @@ var gravity,
     currPlayer,
     p1Score = 0,
     p2Score = 0,
+    piecesPlaced = 0,
     playerColors = [ "#ffffff", "#ea3347", "#20a3d8" ],
     emptyBoard = [
       [0, 0, 0, 0, 0, 0],
@@ -53,6 +55,7 @@ function initVariables() {
   
   gravity = true;
   gameWon = false;
+  piecesPlaced = 0;
 
   document.getElementById('game-full').style.backgroundImage="url(../res/Background-full-wide-down.png)";
 }
@@ -120,6 +123,7 @@ function addToCol(player, c) {
     for (r = 0; r < board[c].length; r += 1) {
       if (board[c][r] === EMPTY) {
         board[c][r] = player;
+        piecesPlaced += 1;
         return true;
       }
     }
@@ -127,6 +131,7 @@ function addToCol(player, c) {
     for (r = board[c].length - 1; r >= 0; r -= 1) {
       if (board[c][r] === EMPTY) {
         board[c][r] = player;
+        piecesPlaced += 1;
         return true;
       }
     }
@@ -197,7 +202,10 @@ function checkWin() {
     updateWinMessage(PLAYER_2);
     p2Score += 1;
     gameWon = true;
-  } else {
+  } else if(piecesPlaced == FULLBOARD){
+    updateWinMessage(FULLBOARD);
+    gameWon = true;
+  }else {
     gameWon = false;
   }
   
@@ -253,6 +261,8 @@ function updateScore() {
 function updateWinMessage(winner) {
   if (winner === TIE) {
     playerTurn.innerHTML = "It's a tie! Press 'r' to restart.";
+  } else if(winner === FULLBOARD){
+    playerTurn.innerHTML = "Board is full! Press 'r' to restart.";
   } else {
     playerTurn.innerHTML = "Player " + winner + " Won! Press 'r' to restart."; 
   }
