@@ -74,6 +74,7 @@ function isCommandCode(keyCode) {
 //   processKey(event.keyCode);
 // }, false);
 
+// main game "loop"
 function processKey(keyCode) {
   if (keyCode === 78 || keyCode === 82) { // restart or new game
     gameWon = false;
@@ -185,6 +186,7 @@ function flipGravity() {
   gravity = !gravity;
 }
 
+// check possible game end scenarios
 function checkWin() {
   var player1Won = checkPlayerWin(PLAYER_1);
   var player2Won = checkPlayerWin(PLAYER_2);
@@ -254,6 +256,9 @@ function checkPlayerWin(player) {
   return false;
 }
 
+//-----------------------------------------------------------------------------
+// Manipulate HTML
+//-----------------------------------------------------------------------------
 function updateScore() {
   score.innerHTML = "Player 1: " + p1Score + "&nbsp; &nbsp; Player 2: " + p2Score;
 }
