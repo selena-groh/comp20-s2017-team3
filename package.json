@@ -1,0 +1,27 @@
+{
+  "name": "float-four",
+  "version": "0.0.1",
+  "description": "A variation on the classic Connect Four game",
+  "engines": {
+    "node": "latest"
+  },
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "latest",
+    "mongodb": "latest",
+    "body-parser": "latest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://git.heroku.com/float-four.git"
+  },
+  "keywords": [
+    "node",
+    "heroku",
+    "express"
+  ],
+  "license": "COMP20 2017 Group 3"
+}
