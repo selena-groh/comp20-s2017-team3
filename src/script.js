@@ -87,7 +87,7 @@ function processKey(keyCode) {
   var columnChosen = -1;
   if (isColumnCode(keyCode)) {
     columnChosen = keyCode % 49;
-    // check if valid move  
+    // if valid move  
     if(addToCol(currPlayer, columnChosen)) {
         updateGraphics(columnChosen);
     }
@@ -118,7 +118,6 @@ function processKey(keyCode) {
   }
 }
 
-// add a piece belonging to player to column c
 function addToCol(player, c) {
   if (gravity) {
     for (r = 0; r < board[c].length; r += 1) {
@@ -140,7 +139,7 @@ function addToCol(player, c) {
   return false;
 }
 
-// flip gravity and recalculate pieces on the board
+// flip gravity of board
 function flipGravity() {
   for (c = 0; c < board.length; c += 1) {
     colLength = board[c].length;
@@ -186,7 +185,6 @@ function flipGravity() {
   gravity = !gravity;
 }
 
-// check possible game end scenarios
 function checkWin() {
   var player1Won = checkPlayerWin(PLAYER_1);
   var player2Won = checkPlayerWin(PLAYER_2);
