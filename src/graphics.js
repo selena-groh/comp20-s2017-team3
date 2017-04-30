@@ -3,6 +3,7 @@ const boardColor = "#003466";
 const p1Color = playerColors[1];
 const p2Color = playerColors[2];
 var graphicsKey = false;
+var circlePieces = true;
 
 Game = {
 
@@ -47,12 +48,22 @@ Crafty.c('Grid', {
   }
 });
 
-Crafty.c('piece', {
-  init: function() {
-    this.requires('2D, Canvas, Grid, Color');
-    this.color(boardColor);
-  },
-});
+if(circlePieces) {
+  Crafty.c('piece', {
+    init: function() {
+      this.requires('2D, Canvas, Grid, Color, Image');
+      this.color(boardColor);
+    },
+  });
+} else {
+  console.log("hey");
+  Crafty.c('piece', {
+    init: function() {
+      this.requires('2D, Canvas, Grid, Color');
+      this.color(boardColor);
+    },
+  });
+}
 
 function updateGraphics() {
   for(var i = 0; i < COLUMNS; i++) {
@@ -91,13 +102,27 @@ function initGraphics() {
 
 function setPieceColor(c, r) {
   if(board[c][r] == PLAYER_1) {
-    entities[c][ROWS-r-1].color(p1Color);
     entities[c][ROWS-r-1].attr({type: PLAYER_1});
+    if(circlePieces) {
+      entities[c][ROWS-r-1].image("../res/circleSmallRed.png", "no-repeat");
+    } else {
+      entities[c][ROWS-r-1].color(p1Color);
+    }
   } else if(board[c][r] == PLAYER_2) {
-    entities[c][ROWS-r-1].color(p2Color);
+    // entities[c][ROWS-r-1].color(p2Color);
     entities[c][ROWS-r-1].attr({type: PLAYER_2});
+    if(circlePieces) {
+      entities[c][ROWS-r-1].image("../res/circleSmallBlue.png", "no-repeat");
+    } else {
+      entities[c][ROWS-r-1].color(p2Color);
+    }
   } else {
-    entities[c][ROWS-r-1].color(boardColor);
+    entities[c][ROWS-r-1].attr({type: EMPTY});
+    if(circlePieces) {
+      entities[c][ROWS-r-1].image("");
+    } else {
+      entities[c][ROWS-r-1].color(boardColor);
+    }
   }
 }
 
