@@ -42,6 +42,6 @@
 * An algorithm to check if a player has won the game (by placing four same-colored discs in a row)
 
 ###Mock-Ups###
-![Home page](mockups/Home.png)
-![Game instructions page](mockups/Gravity.png)
-![Game page](mockups/Anti-Gravity.png)
+![Home page](docs/mockups/Home.png)
+![Game instructions page](docs/mockups/Gravity.png)
+![Game page](docs/mockups/Anti-Gravity.png)

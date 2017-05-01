@@ -1,22 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8"/>
   <title>Float Four</title>
-  
+  <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="float_four.css">
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.5/js/bootstrap-dialog.min.js"></script>
-  <script type="text/javascript" src="../lib/crafty-min.js"></script>
-  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script src="stats.js"></script>
 </head>
-
-<body onload="start()">
+<body>
   <nav id="mainNav" class="navbar navbar-default navbar-custom">
     <div class="container">
       <!-- Brand and toggle get grouped for better mobile display -->
@@ -46,25 +41,20 @@
     <!-- /.container-fluid -->
   </nav>
   
-  <div class="jumbotron text-center main-game game" id="game-full">
-    <div id="column-labels">
-      <h3>1</h3>
-      <h3>2</h3>
-      <h3>3</h3>
-      <h3>4</h3>
-      <h3>5</h3>
-      <h3>6</h3>
-      <h3>7</h3>
-    </div>
-    <div class="container" id="gamespace">
-      <!--<h2 class="display-3" id="game"></h2>-->
-    </div>
-    <div>
-      <h2 id="turn"></h2>
-      <h3 id="score"></h3>
+  <div class="jumbotron jumbotron-fluid text-center jumbo-stats">
+    <div class="container stats-container">
+      <h1 class="display-3">Float-Four Stats</h1>
+      <div id="chart_div"></div>
     </div>
   </div>
-  <script src="script.js"></script>
-  <script src="graphics.js"></script>
+  
+  <footer class="footer text-center">
+    <div class="container">
+      <h5>&copy; 2017 Selena Groh, Jillian Howarth, Ben Machlin, Caroline Sheng, &amp; Craig Vitirinyu</h5>
+    </div>
+  </footer>
+    
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 </html>

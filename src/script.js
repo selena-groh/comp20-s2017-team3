@@ -283,13 +283,29 @@ function updateCurrPlayerMessage() {
 }
 
 //Instructions pop up box
-BootstrapDialog.show({
-  title: '<h1> Instructions </h1>',
-    message: "<p> Use your number keys (1, 2, 3, 4, 5, 6, & 7) to play your discs.</p> <p> Press 'f' to flip the board and 'r' to restart </p>",
+if ($(window).width() < 480 || $(window).height() < 480) {
+  BootstrapDialog.show({
+    title: '<h1> Oh no! </h1>',
+    message: "<p> This game does not work on mobile. Please use a desktop computer to play.</p> <img src='../res/Albert_Sad.png'>",
     buttons: [{
-      label: 'Play!',
+      label: "Take me home",
         action: function(dialog) {
           dialog.close();
+          window.location = 'http://float-four.herokuapp.com/';
         }
     }]
-});
+  });
+    
+}
+else {
+  BootstrapDialog.show({
+    title: '<h1> Instructions </h1>',
+      message: "<p> Use your number keys (1, 2, 3, 4, 5, 6, & 7) </br> to place your discs in the corresponding columns.</p> <p> Press &#39;f&#39; to flip gravity! </p> <p>  Use &#39;r&#39; to restart the current game and </br> &#39;n&#39; to restart and reset the player count. </p> <img src='../res/instructions.gif'>",
+      buttons: [{
+        label: 'Play!',
+          action: function(dialog) {
+            dialog.close();
+          }
+      }]
+  });
+}
