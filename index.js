@@ -11,12 +11,12 @@ app.set('port', (process.env.PORT || 5000));
 // process.env.MONGOHQ_URL is the environment variable on Heroku for the MongoHQ add-on
 // If environment variables not found, fall back to mongodb://localhost/nodemongoexample
 // nodemongoexample is the name of the database
-var mongoUri = process.env.MONGODB_URI || process.env.MONGOLAB_URI || process.env.MONGOHQ_URL;
+var mongoUri = process.env.MONGODB_URI || process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://localhost/nodemongoexample';
 var MongoClient = require('mongodb').MongoClient, format = require('util').format;
 var db = MongoClient.connect(mongoUri, function(error, dC) {
 	if(error) return;
 
-	db = dc.createCollection('stats', function(err, collection) {});
+	db = dC.createCollection('stats', function(err, collection) {});
 });
 
 function insertWin(player, placed) {
