@@ -13,10 +13,10 @@ The game ends when one user obtains 4 same-colored discs in a row horizontally, 
 
 ## Features
 #### Front-end framework
-We used Bootstrap for the interface design of our application.
+We used [Bootstrap](http://getbootstrap.com/) for the interface design of our application.
 
-#### Server-side data persistence (MongoDB)
-We used MongoDB to store statistics on how many wins there are for each color across games. This information is useful in determining if player one or player two has a disproportionate advantage.
+#### Server-side data persistence
+We used [MongoDB](https://www.mongodb.com/) to store statistics on how many wins there are for each color across games. This information is useful in determining if player one or player two has a disproportionate advantage.
 
 #### Charts and Graphs
 We used the [Google Charts API](https://developers.google.com/chart/) to graphically represent the data stored in MongoDB on our stats.html page.
