@@ -208,3 +208,14 @@ header .intro-text .name {
 .footer h5 {
   margin: 0 0;
 }
+
+.stats-container {
+  margin: auto;
+  width: 55%;
+  height: 100%;
+  background-color: #11233b;
+}
+
+.stats-container h1 {
+margin-bottom: 12%;
+}

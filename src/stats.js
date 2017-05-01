@@ -24,7 +24,12 @@
         // Set chart options
         var options = {backgroundColor: 'transparent',
                         colors: ['blue', 'red'],
+                        chartArea: { left: '10%', top: '0%', width: "100%", height: "100%" },
+                        legend: {textStyle: {color: 'white', fontSize: 16}},
                      };
+
+        //options.legend = {position: 'top', textStyle: {color: 'white', fontSize: 16}},
+        //options.chartArea = { left: '10%', top: '10%', width: "100%", height: "100%" };
 
 
 
