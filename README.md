@@ -12,16 +12,17 @@ When the gravity is reversed, pieces are added at the bottom and they float up t
 The game ends when one user obtains 4 same-colored discs in a row horizontally, vertically, or diagonally. If both users obtain a win at the same time, the game ends in a tie. If the board fills up with pieces without a win, the game is over with no winners.
 
 ## Features
-#### Front-end framework
+#### Front-end Framework
 We used [Bootstrap](http://getbootstrap.com/) for the interface design of our application.
 
-#### Server-side data persistence
+#### Use of a JavaScript Framework for Games
+We used [crafty.js](http://craftyjs.com/) to create the visuals of our game including the gameboard and game pieces.
+
+#### Server-side Data Persistence
 We used [MongoDB](https://www.mongodb.com/) to store statistics on how many wins there are for each color across games. This information is useful in determining if player one or player two has a disproportionate advantage.
 
-#### Charts and Graphs
+#### Reporting with Charts and Graphs
 We used the [Google Charts API](https://developers.google.com/chart/) to graphically represent the data stored in MongoDB on our stats.html page.
-#### Use of a JavaScript framework for games
-We used [crafty.js](http://craftyjs.com/) to create the visuals of our game including the gameboard and game pieces.
 
 ## Deviations from Initial Design
 #### Circular Pieces
