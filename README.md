@@ -1,6 +1,6 @@
-##Float Four##
+Float Four
 
-###Team Members ###
+###Team Members###
 
 * Selena Groh, Jillian Howarth, Ben Machlin, Caroline Sheng, Craig Vitirinyu
 
