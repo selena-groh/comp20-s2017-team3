@@ -14,7 +14,7 @@ app.set('port', (process.env.PORT || 5000));
 var mongoUri = process.env.MONGODB_URI || process.env.MONGOLAB_URI || process.env.MONGOHQ_URL;
 var MongoClient = require('mongodb').MongoClient, format = require('util').format;
 var db = MongoClient.connect(mongoUri, function(error, dC) {
-	if(err) return;
+	if(error) return;
 
 	db = dc.createCollection('stats', function(err, collection) {});
 });
