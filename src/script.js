@@ -286,7 +286,7 @@ function updateCurrPlayerMessage() {
 if ($(window).width() < 480 || $(window).height() < 480) {
   BootstrapDialog.show({
     title: '<h1> Oh no! </h1>',
-    message: "<p> This game does not work on mobile. Please use a desktop computer to play.</p> <img src='../res/Albert_sad.png'>",
+    message: "<p> This game does not work on mobile. Please use a desktop computer to play.</p> <img src='../res/Albert_Sad.png'>",
     buttons: [{
       label: "Take me home",
         action: function(dialog) {
