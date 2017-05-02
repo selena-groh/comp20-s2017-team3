@@ -1,7 +1,7 @@
 const COLUMNS = 7, ROWS = 6;
 const minColInput = 49, maxColInput = 49 + COLUMNS;
 const EMPTY = 0, PLAYER_1 = 1, PLAYER_2 = 2, TIE = 0;
-const FULLBOARD = 42;
+const FULLBOARD = ROWS*COLUMNS;
 
 var gravity,
     gameOver,
@@ -39,7 +39,7 @@ function restart() {
 }
 
 function sizeGamespace() {
-  $("#gamespace").width($("#gamespace").height() / 6 * 7);
+  $("#gamespace").width($("#gamespace").height() / FULLBOARD);
   $("#column-labels").width($("#gamespace").width());
 }
 
