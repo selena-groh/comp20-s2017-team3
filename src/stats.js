@@ -27,6 +27,10 @@ const PLAYER_1 = 1, PLAYER_2 = 2;
 
       function drawChart(stats) {
 
+        if (!stats[1]) {
+          document.getElementById('chart_div').innerHTML = "<h3>Insufficient Data</h3>";
+          return;
+        }
         var p1wins, p2wins;
 
         if (stats[0]["player"] == PLAYER_1) {
