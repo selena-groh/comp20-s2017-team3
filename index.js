@@ -1,7 +1,6 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
-var db;
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.set('port', (process.env.PORT || 5000));
@@ -13,26 +12,13 @@ app.set('port', (process.env.PORT || 5000));
 // nodemongoexample is the name of the database
 var mongoUri = process.env.MONGODB_URI || process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://localhost/nodemongoexample';
 var MongoClient = require('mongodb').MongoClient, format = require('util').format;
-var db = MongoClient.connect(mongoUri, function(error, dC) {
-	if(error) return;
-
-	db = dC.createCollection('stats', function(err, collection) {});
+var db = MongoClient.connect(mongoUri, function(error, databaseConnection) {
+	db = databaseConnection;
 });
-
-function insertWin(player, placed) {
-	db.insert({
-		winner: player,
-		time: Date.now(),
-		pieces: placed
-	});
-}
 
 app.use(express.static(__dirname + '/src'));
 app.use('/lib', express.static(__dirname + '/lib'));
 app.use('/res', express.static(__dirname + '/res'));
-// https://github.com/tuftsdev/WebProgramming/blob/gh-pages/examples/nodejs/nodemongoapp/server.js
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
 
 /*
 app.post('/newgame', function(request, response) {
