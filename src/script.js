@@ -54,6 +54,21 @@ function initVariables() {
   gravity = true;
   gameOver = false;
   piecesPlaced = 0;
+  
+  function preload(arrayOfImages) {
+    $(arrayOfImages).each(function(){
+        $('<img/>')[0].src = this;
+        // Alternatively you could use:
+        // (new Image()).src = this;
+    });
+  }
+
+// Usage:
+
+  preload([
+    '../res/Background-full-wide-up.png',
+    '../res/Background-full-wide-down.png'
+  ]);
 
   document.getElementById('game-full').style.backgroundImage="url(../res/Background-full-wide-down.png)";
 }
