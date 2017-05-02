@@ -1,5 +1,5 @@
 # Float Four
-*a game by Selena Groh, Jillian Howarth, Ben Machlin, Caroline Sheng, and Craig Vitirinyu*
+*a game by Selena Groh, Jillian Howarth, Ben Machlin, and Caroline Sheng*
 
 Float Four is adds a new dimension of strategy to the classic game Connect Four. Players can, at their will, reverse the direction of gravity, causing the pieces to float to the top of the board and therefore altering the relationships between them.
 
