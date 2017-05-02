@@ -62,8 +62,6 @@ app.post('/submitWin', function(request, response) {
 			}
 		});
   }
-  	
-  }
 });
 
 app.get('/stats.json', function(request, response) {
