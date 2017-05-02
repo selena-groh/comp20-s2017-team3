@@ -19,7 +19,7 @@ We used [Bootstrap](http://getbootstrap.com/) for the interface design of our ap
 We used [crafty.js](http://craftyjs.com/) to create the visuals of our game including the gameboard and game pieces.
 
 #### Server-side Data Persistence
-We used [MongoDB](https://www.mongodb.com/) to store statistics on how many wins there are for each color across games. This information is useful in determining if player one or player two has a disproportionate advantage.
+We used [MongoDB](https://www.mongodb.com/) to store statistics on how many wins there are for each player across games. This information is useful in determining if player one or player two has a disproportionate advantage.
 
 #### Reporting with Charts and Graphs
 We used the [Google Charts API](https://developers.google.com/chart/) to graphically represent the data stored in MongoDB on our stats.html page.
