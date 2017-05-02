@@ -165,6 +165,21 @@ header .intro-text .name {
   padding-bottom: 10px;
 }
 
+.stats-container {
+  margin: auto;
+  width: 55%;
+  padding: 20px 20px;
+  padding-bottom: 40px;
+}
+
+.stats-container h1 {
+margin-bottom: 12%;
+}
+
+.jumbo-stats {
+  background-image: url(../res/Stats_BG.png);
+}
+
 .modal-content h1 {
   font-family: "Montserrat", sans-serif;
   font-size: 30px;
@@ -207,16 +222,4 @@ header .intro-text .name {
 
 .footer h5 {
   margin: 0 0;
-}
-
-.stats-container {
-  margin: auto;
-  width: 55%;
-  background-color: #11233b;
-  padding: 20px 20px;
-  padding-bottom: 40px;
-}
-
-.stats-container h1 {
-margin-bottom: 12%;
 }
