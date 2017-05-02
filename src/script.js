@@ -309,7 +309,7 @@ if ($(window).width() < 480 || $(window).height() < 480) {
 else {
   BootstrapDialog.show({
     title: '<h1> Instructions </h1>',
-      message: "<p> Use your number keys (1, 2, 3, 4, 5, 6, & 7) </br> to place your pieces in the corresponding columns.</p> <p> Press &#39;f&#39; to flip the direction of gravity! </p> <p>  Use &#39;r&#39; to restart the current game and </br> &#39;n&#39; to start a new game, which resets the player win count. </p> <img src='../res/instructions.gif'>",
+      message: "<p> Use your number keys (1 through 7) </br> to place your pieces in the corresponding columns.</p> <p>Get four in a row horizontally, vertically, or diagonally to win!</p> <p> Press &#39;f&#39; to flip the direction of gravity! </p> <p>  Press &#39;r&#39; to restart the current game. </p> <p> Press &#39;n&#39; to start a new game, which resets the player win count. </p> <img src='../res/instructions.gif'>",
       buttons: [{
         label: 'Play!',
           action: function(dialog) {
