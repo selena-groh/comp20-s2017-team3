@@ -3,7 +3,7 @@ const boardColor = "#003466";
 const p1Color = playerColors[1];
 const p2Color = playerColors[2];
 var graphicsKey = false;
-var circlePieces = true;
+var circlePieces = false;
 
 Game = {
 
