@@ -2,13 +2,33 @@
       google.charts.load('current', {'packages':['corechart']});
 
       // Set a callback to run when the Google Visualization API is loaded.
-      google.charts.setOnLoadCallback(drawChart);
+      google.charts.setOnLoadCallback(getStats);
+
+      function getStats() {
+      	"use strict";
+			  var request = new XMLHttpRequest();
+
+			  request.open("GET", "https://float-four.herokuapp.com/stats.json", true);
+			  request.onreadystatechange = function () {
+			    var stats;
+			    
+			    if (request.readyState === 4 && request.status === 200) {
+			      stats = JSON.parse(request.responseText);
+			      drawChart(stats);
+			    } else if (request.readyState === 4 && request.status !== 200) {
+			      console.log("Error: XML request went wrong.");
+			    }
+			  };
+			  request.send();
+      }
+
 
       // Callback that creates and populates a data table,
       // instantiates the pie chart, passes in the data and
       // draws it.
-      function drawChart() {
+      function drawChart(stats) {
         // Create the data table.
+        console.log("stats: " + stats);
 
         var blue = 10;
         var red = 25;
@@ -17,8 +37,8 @@
         data.addColumn('string', 'Color');
         data.addColumn('number', 'Wins');
         data.addRows([
-          ['Blue', blue],
-          ['Red', red],
+          ['Player 1', blue],
+          ['Player 2', red],
         ]);
 
         // Set chart options

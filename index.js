@@ -20,23 +20,43 @@ app.use(express.static(__dirname + '/src'));
 app.use('/lib', express.static(__dirname + '/lib'));
 app.use('/res', express.static(__dirname + '/res'));
 
-/*
-app.post('/newgame', function(request, response) {
+app.post('/submitWin', function(request, response) {
   response.header("Access-Control-Allow-Origin", "*");
   response.header("Access-Control-Allow-Headers", "X-Requested-With");
 
-  var board = request.body.board;
+  var winner = request.body.winner;
+  var currentWins;
 
-  if (board) {
-    db.collection("games", function(error, coll) {
+  if (winner !=== undefined) {
+    db.collection("wins", function(error, coll) {
 	  	if (error) {
 		    console.log("Error: " + error);
-		  	response.sendStatus(500);		  
-		  } else {
-			  coll.insert( { board: board }, function(error, insertedDocument) {
-			  	var _id = JSON.stringify(insertedDocument._id);
-			  	response.json({"_id": _id});
-			  });
+		  	response.sendStatus(500);
+			} else {
+				coll.find({player: winner}).toArray(function(error, documents) {
+					var document = documents[0];
+				  if (document) {
+				  	currentWins = document.wins + 1;
+				  	coll.update(
+						 	{ player: winner},
+						 	{
+						 		player: winner,
+						 		wins: currentWins
+						 	},
+						 	{ upsert: true}
+						);
+				  } else {
+				  	currentWins = 1;
+				  	coll.update(
+						 	{ player: winner},
+						 	{
+						 		player: winner,
+						 		wins: currentWins
+						 	},
+						 	{ upsert: true}
+						);
+				  }
+				});
 			}
 		});
   } else {
@@ -44,34 +64,18 @@ app.post('/newgame', function(request, response) {
   }
 });
 
-app.post('/submit', function(request, response) {
-  response.header("Access-Control-Allow-Origin", "*");
-  response.header("Access-Control-Allow-Headers", "X-Requested-With");
-
-  var _id = request.body._id;
-  var board = request.body.board;
-
-  if (_id && board) {
-    db.collection("games", function(error, coll) {
-	  	if (error) {
-		    console.log("Error: " + error);
-		  	response.sendStatus(500);		  
-		  } else {
-			  coll.update(
-			  	{ _id: _id},
-			  	{
-			  		_id: _id, // unnecessary?
-			  		board: board,
-			  	},
-			  	{ upsert: true}
-			  );
-			}
-		});
-  } else {
-  	response.json({"error":"Whoops, something is wrong with your data!"});
-  }
+app.get('/stats.json', function(request, response) {
+	db.collection("wins", function(error, coll) {
+	  if (error) {
+	    console.log("Error: " + error);
+	  	response.sendStatus(500);		  
+	  } else {
+			coll.find().toArray(function(error, documents) {
+				response.send(JSON.stringify(documents));
+			});
+		}
+	});
 });
-*/
 
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));

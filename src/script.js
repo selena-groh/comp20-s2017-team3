@@ -4,7 +4,7 @@ const EMPTY = 0, PLAYER_1 = 1, PLAYER_2 = 2, TIE = 0;
 const FULLBOARD = 42;
 
 var gravity,
-    gameWon,
+    gameOver,
     board,
     currPlayer,
     p1Score = 0,
@@ -54,7 +54,7 @@ function initVariables() {
   updateScore();
   
   gravity = true;
-  gameWon = false;
+  gameOver = false;
   piecesPlaced = 0;
 
   document.getElementById('game-full').style.backgroundImage="url(../res/Background-full-wide-down.png)";
@@ -77,10 +77,10 @@ function isCommandCode(keyCode) {
 // main game "loop"
 function processKey(keyCode) {
   if (keyCode === 78 || keyCode === 82) { // restart or new game
-    gameWon = false;
+    gameOver = false;
   }
   
-  if (gameWon || !(isColumnCode(keyCode) || isCommandCode(keyCode))) {
+  if (gameOver || !(isColumnCode(keyCode) || isCommandCode(keyCode))) {
     return;
   }
   
@@ -113,7 +113,7 @@ function processKey(keyCode) {
   }
   
   checkWin();
-  if (!gameWon) {
+  if (!gameOver) {
     updateCurrPlayer();
   }
 }
@@ -193,25 +193,41 @@ function checkWin() {
     updateWinMessage(TIE);
     p1Score += 1;
     p2Score += 1;
-    gameWon = true;    
+    submitWin(PLAYER_1);
+    submitWin(PLAYER_2);
+    gameOver = true;    
   } else if (player1Won) {
     updateWinMessage(PLAYER_1);
     p1Score += 1;
-    gameWon = true;
+    submitWin(PLAYER_1);
+    gameOver = true;
   } else if (player2Won) {
     updateWinMessage(PLAYER_2);
     p2Score += 1;
-    gameWon = true;
+    submitWin(PLAYER_2);
+    gameOver = true;
   } else if(piecesPlaced == FULLBOARD){
     updateWinMessage(FULLBOARD);
-    gameWon = true;
+    gameOver = true;
   }else {
-    gameWon = false;
+    gameOver = false;
   }
   
   updateScore();
   
-  return gameWon;
+  return gameOver;
+}
+
+function submitWin(winner) {
+  "use strict";
+  var request = new XMLHttpRequest(),
+    parameters = "";
+
+  request.open("POST", "https://float-four.herokuapp.com/submitWin", true);
+  request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+  parameters = "winner=" + winner;
+  request.send(parameters);
 }
 
 function checkPlayerWin(player) {
