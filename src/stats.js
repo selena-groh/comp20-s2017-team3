@@ -28,22 +28,28 @@
       // draws it.
       function drawChart(stats) {
         // Create the data table.
-        console.log(stats);
 
-        var blue = 10;
-        var red = 25;
+        var p1wins, p2wins;
+
+        if (stats[0]["player"] == PLAYER_1) {
+        	p1wins = stats[0]["wins"];
+        	p2wins = stats[1]["wins"];
+        } else {
+        	p1wins = stats[1]["wins"];
+        	p2wins = stats[0]["wins"];        	
+        }
 
         var data = new google.visualization.DataTable();
         data.addColumn('string', 'Color');
         data.addColumn('number', 'Wins');
         data.addRows([
-          ['Player 1', blue],
-          ['Player 2', red],
+          ['Player 1', p1wins],
+          ['Player 2', p2wins],
         ]);
 
         // Set chart options
         var options = {backgroundColor: 'transparent',
-                        colors: ['#20a3d8', '#ea3347'],
+                        colors: ['#ea3347', '#20a3d8'],
                         chartArea: { left: '10%', top: '0%', width: "100%", height: "100%" },
                         legend: {textStyle: {color: 'white', fontSize: 16}},
                      };
