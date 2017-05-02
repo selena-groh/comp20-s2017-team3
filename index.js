@@ -27,7 +27,9 @@ app.post('/submitWin', function(request, response) {
   var winner = request.body.winner;
   var currentWins;
 
-  if (winner !=== undefined) {
+  if (winner === undefined) {
+  	response.json({"error":"Whoops, something is wrong with your data!"});
+  } else {
     db.collection("wins", function(error, coll) {
 	  	if (error) {
 		    console.log("Error: " + error);
@@ -59,8 +61,8 @@ app.post('/submitWin', function(request, response) {
 				});
 			}
 		});
-  } else {
-  	response.json({"error":"Whoops, something is wrong with your data!"});
+  }
+  	
   }
 });
 
