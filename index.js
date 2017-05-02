@@ -65,6 +65,8 @@ app.post('/submitWin', function(request, response) {
 });
 
 app.get('/stats.json', function(request, response) {
+  response.header("Access-Control-Allow-Origin", "*");
+  response.header("Access-Control-Allow-Headers", "X-Requested-With");
 	db.collection("wins", function(error, coll) {
 	  if (error) {
 	    console.log("Error: " + error);
