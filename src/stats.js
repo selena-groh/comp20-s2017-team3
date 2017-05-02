@@ -28,7 +28,7 @@
       // draws it.
       function drawChart(stats) {
         // Create the data table.
-        console.log("stats: " + stats);
+        console.log(stats);
 
         var blue = 10;
         var red = 25;
