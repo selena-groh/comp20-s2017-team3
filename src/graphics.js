@@ -56,7 +56,6 @@ if(circlePieces) {
     },
   });
 } else {
-  console.log("hey");
   Crafty.c('piece', {
     init: function() {
       this.requires('2D, Canvas, Grid, Color');

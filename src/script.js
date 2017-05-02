@@ -141,13 +141,17 @@ function addToCol(player, c) {
 
 // flip gravity of board
 function flipGravity() {
+  //change background gravity direction
+  if(gravity)
+      document.getElementById('game-full').style.backgroundImage="url(../res/Background-full-wide-up.png)";
+  else
+      document.getElementById('game-full').style.backgroundImage="url(../res/Background-full-wide-down.png)";
+  
   for (c = 0; c < board.length; c += 1) {
     colLength = board[c].length;
     shift = 0;
 
     if (gravity) { // gravity normal
-      //change background gravity direction
-      document.getElementById('game-full').style.backgroundImage="url(../res/Background-full-wide-up.png)";
       // calculate number of slots to shift pieces
       for (r = colLength - 1; r >= 0; r -= 1) {
         if(board[c][r] == 0)
@@ -164,8 +168,6 @@ function flipGravity() {
       }
       
     } else { // gravity upside down
-      //change background gravity direction
-      document.getElementById('game-full').style.backgroundImage="url(../res/Background-full-wide-down.png)";
       // calculate number of slots to shift pieces
       for (r = 0; r < colLength; r += 1) {
         if(board[c][r] == 0)
