@@ -24,8 +24,6 @@ var gravity,
 var playerTurn = document.getElementById("turn");
 var score = document.getElementById("score");
 
-//$(window).resize(sizeGamespace);
-
 // initialize new game
 function start() {
   sizeGamespace();  
@@ -69,11 +67,6 @@ function isCommandCode(keyCode) {
 }
 
 // keyboard controls
-// window.addEventListener('keyup', function(event) {
-//   console.log("native keypress");
-//   processKey(event.keyCode);
-// }, false);
-
 // main game "loop"
 function processKey(keyCode) {
   if (keyCode === 78 || keyCode === 82) { // restart or new game
@@ -159,7 +152,6 @@ function flipGravity() {
         else
           break;
       }
-
       // swap pieces with empty slots
       if(shift < colLength && shift > 0) {
         pieceSlice = board[c].slice(0, colLength - shift);
@@ -168,7 +160,6 @@ function flipGravity() {
       }
       
     } else { // gravity upside down
-      // calculate number of slots to shift pieces
       for (r = 0; r < colLength; r += 1) {
         if(board[c][r] == 0)
           shift++;
@@ -176,7 +167,6 @@ function flipGravity() {
           break;
       }
 
-      // swap pieces with empty slots
       if(shift < colLength && shift > 0) {
         pieceSlice = board[c].slice(shift, colLength);
         emptySlice = board[c].slice(0, shift);
@@ -300,7 +290,7 @@ function updateCurrPlayerMessage() {
   playerTurn.style.color = playerColors[currPlayer];
 }
 
-//Instructions pop up box
+//Mobile display
 if ($(window).width() < 480 || $(window).height() < 480) {
   BootstrapDialog.show({
     title: '<h1> Oh no! </h1>',
@@ -312,9 +302,10 @@ if ($(window).width() < 480 || $(window).height() < 480) {
           window.location = 'http://float-four.herokuapp.com/';
         }
     }]
-  });
-    
+  });  
 }
+
+//Instructions pop up box
 else {
   BootstrapDialog.show({
     title: '<h1> Instructions </h1>',

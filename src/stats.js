@@ -25,11 +25,7 @@ const PLAYER_1 = 1, PLAYER_2 = 2;
       }
 
 
-      // Callback that creates and populates a data table,
-      // instantiates the pie chart, passes in the data and
-      // draws it.
       function drawChart(stats) {
-        // Create the data table.
 
         var p1wins, p2wins;
 
@@ -56,12 +52,6 @@ const PLAYER_1 = 1, PLAYER_2 = 2;
                         legend: {textStyle: {color: 'white', fontSize: 16}},
                      };
 
-        //options.legend = {position: 'top', textStyle: {color: 'white', fontSize: 16}},
-        //options.chartArea = { left: '10%', top: '10%', width: "100%", height: "100%" };
-
-
-
-        // Instantiate and draw our chart, passing in some options.
         var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
         chart.draw(data, options);
       }

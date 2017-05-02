@@ -4,6 +4,7 @@ const p1Color = playerColors[1];
 const p2Color = playerColors[2];
 var graphicsKey = false;
 var circlePieces = false;
+// src: http://buildnewgames.com/introduction-to-crafty/
 
 Game = {
 
@@ -28,7 +29,6 @@ Game = {
   }
 }
 
-// src: http://buildnewgames.com/introduction-to-crafty/
 Crafty.c('Grid', {
   init: function() {
     this.attr({
